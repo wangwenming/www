@@ -25,4 +25,17 @@ require.config({
         }
     }
 });
-require(['alarm/index']);
+
+if (wid) {
+    require(['alarm/index']);
+} else {
+    window.setWid = function(v) {
+        window.wid = v;
+        require(['alarm/index']);
+    }
+}
+// 调试，3秒后测试的wid
+setTimeout(function() {
+    alert('no wid');
+    setWid('test');
+}, 3000);
