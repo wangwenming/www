@@ -3,12 +3,17 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'alarm/config',
     'alarm/models/event'
-], function(_, $, deferred, Backbone, EventModel) {
+], function(_, $, deferred, Backbone, config, EventModel) {
     var EventCollection = Backbone.Collection.extend({
         model: EventModel,
         url: function() {
-            return 'http://z.i.so.com/remind/getTypeDatalist?typeId=' + this.caterogyModel.get('id') + '&start=0&count=10&userId=wwm8';
+            return config.url('/remind/getTypeDatalist', {
+                typeId: this.caterogyModel.get('id'),
+                start: 0,
+                count: 10
+            });
         },
         initialize: function(options) {
             this.caterogyModel = options.caterogyModel;

@@ -1,10 +1,10 @@
 define([
-    'backbone'
-], function(Backbone) {
+    'backbone',
+    'alarm/config'
+], function(Backbone, config) {
     var EventModel = Backbone.Model.extend({
-        //urlRoot: 'http://z.i.so.com/remind',
-        urlAdd: 'http://z.i.so.com/remind/addRemind',
-        urlRemove: 'http://z.i.so.com/remind/removeRemind',
+        urlPathAdd: '/remind/addRemind',
+        urlPathRemove: '/remind/rmMyRemind',
         defaults: {
             id: 0,
             name: '',
@@ -15,9 +15,12 @@ define([
             // CRUD
             switch (method) {
                 case 'update':
-                var url = model.get('isRemind') ? this.urlAdd : this.urlRemove;
+                    var urlPath = model.get('isRemind') ? this.urlPathAdd : this.urlPathRemove,
+                        url = config.url(urlPath, {
+                            id: model.get('id')
+                        });
                     $.ajax({
-                        url: url + '?' + $.param({id: model.get('id'), userId: 'wwm'}),
+                        url: url,
                         success: options.success,
                         error: options.error
                     });

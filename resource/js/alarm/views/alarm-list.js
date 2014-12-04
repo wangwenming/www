@@ -13,7 +13,6 @@ define([
             this.render();
         },
         render: function() {
-            console.log(this.collection);
             var html = alarmListTpl({
                     alarmCollection: this.collection
                 });

@@ -1,10 +1,13 @@
 define([
     'backbone',
+    'alarm/config',
     'alarm/collections/alarm'
-], function(Backbone, AlarmCollection) {
+], function(Backbone, config, AlarmCollection) {
     var DetailModel = Backbone.Model.extend({
         url: function() {
-            return 'http://z.i.so.com/remind/getDetail?id=' + this.eventModel.get('id')
+            return config.url('/remind/getDetail', {
+                id: this.eventModel.get('id')
+            });
         },
         initialize: function(options) {
             this.eventModel = options.eventModel;

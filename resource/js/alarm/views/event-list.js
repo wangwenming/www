@@ -31,15 +31,16 @@ define([
                 self.render();
             });
         },
-        render: function() { console.log('rrr', this, this.collection);
+        render: function() {
             var html = eventListTpl({
                     eventCollection: this.collection
                 });
             this.$el.html(html);
         },
+        // 有先后顺序
         events: {
-            'click .event-item': 'navigateToDetail',
-            'click .event-action': 'toggleSubscription'
+            'click .event-action': 'toggleSubscription',
+            'click .event-item': 'navigateToDetail'
         },
         toggleSubscription: function(event) {
             var id = $(event.target).closest('.list-item').data('id'),
@@ -48,6 +49,11 @@ define([
             model.save({isRemind: model.get('isRemind') ? 0 : 1});
         },
         navigateToDetail: function(event) {
+            // Backbone事件无法阻止冒泡
+            if ($(event.target).is('.list-action')) {
+                return;
+            }
+
             var id = $(event.target).closest('.list-item').data('id'),
                 eventModel = this.collection.get(id),
                 detailPageView = new DetailPageView({

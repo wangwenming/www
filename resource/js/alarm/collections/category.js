@@ -3,11 +3,17 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'alarm/config',
     'alarm/models/category'
-], function(_, $, deferred, Backbone, CategoryModel) {
+], function(_, $, deferred, Backbone, config, CategoryModel) {
     var CategoryCollection = Backbone.Collection.extend({
         model: CategoryModel,
-        url: 'http://z.i.so.com/remind/list?start=0&count=10',
+        url: function() {
+            return config.url('/remind/list', {
+                start: 0,
+                count: 10
+            });
+        },
         parse: function(response) {
             if (response.error != 0) {
                 return [];
