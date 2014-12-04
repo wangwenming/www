@@ -26,6 +26,9 @@ require.config({
     }
 });
 
+require(['alarm/index']);
+/*
+MyContent.getWid()
 if (wid) {
     require(['alarm/index']);
 } else {
@@ -39,3 +42,4 @@ setTimeout(function() {
     alert('no wid');
     setWid('test');
 }, 3000);
+*/
