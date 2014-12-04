@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>360提醒</title>
+<link rel="stylesheet" href="http://static.qhimg.com/!c957e3af/reset.css">
+<link rel="stylesheet" href="/resource/css/alarm/index.css">
+</head>
+<body>
+<div id="pages">
+  <!-- 首页 Begin -->
+  <div id="page-home" class="page">
+    <div class="hd">
+        <a class="btn home"></a>
+        <h2>全部</h2>
+    </div>
+    <div class="bd">
+      <!-- 轮播图 Begin -->
+      <div class="carousel">
+        <img src="/resource/img/alarm/train.png">
+        <h3>离线抢购火车票</h3>
+      </div>
+      <!-- 轮播图 End -->
+
+      <!-- 列表 Begin -->
+      <ul id="index-cat-list" class="cat-list">
+      <script id="tpl-cat-item" type="text/x-tpl">
+      <% for (var i = 0, len = categoryCollection.length, item; i < len; i++) {
+           item = categoryCollection.at(i).attributes;
+      %>
+        <li class="list-item cat-item" data-id="<%- item.id %>">
+          <div class="list-icon cat-icon"><img src="<%= item.icon %>"></div>
+          <div class="list-action cat-action"></div>
+          <h3 class="cat-title"><%- item.name %></h3>
+          <p class="cat-desc"><%- item.title %></p>
+        </li>
+      <% } %>
+      </script>
+      </ul>
+      <!-- 列表 End -->
+    </div>
+    <div class="ft"></div>
+  </div>
+  <!-- 首页 End -->
+
+  <!-- 列表页 Begin -->
+  <div id="page-event-list" class="page">
+    <div class="hd">
+        <a class="btn back"></a>
+        <h2></h2>
+    </div>
+    <div class="bd">
+      <!-- 列表 Begin -->
+      <ul id="event-list">
+      <script id="tpl-event-item" type="text/x-tpl">
+      <% for (var i = 0, len = eventCollection.length, item; i < len; i++) {
+           item = eventCollection.at(i).attributes;
+      %>
+        <li class="list-item event-item<% if (item.isRemind) { %> event-item-subscribed<% } %>" data-id="<%- item.id %>">
+          <div class="list-icon event-img"><img src="<%= item.coverImg %>"></div>
+          <div class="list-action event-action"></div>
+          <h3 class="event-title"><%- item.name %></h3>
+          <p class="event-desc"><%- item.desc %></p>
+        </li>
+      <% } %>
+      </script>
+      </ul>
+      <!-- 列表 End -->
+    </div>
+    <div class="ft"></div>
+  </div>
+  <!-- 列表页 End -->
+
+  <!-- 详情页 Begin -->
+  <div id="page-detail" class="page">
+    <div class="hd">
+        <a class="btn back"></a>
+        <h2>添加提醒</h2>
+    </div>
+    <div class="bd">
+      <!-- 大图 Begin -->
+      <div class="poster">
+        <img>
+        <div class="poster-desc">
+          <div class="poster-action"></div>
+          <h3>绝命毒师第四季</h3>
+          <p>搜狐 每周日6:00 更新</p>
+        </div>
+      </div>
+      <!-- 大图 End -->
+
+      <!-- 列表 Begin -->
+      <ul id="alarm-list">
+        <!--li class="list-item alarm-item" data-id="<%- item.id %>">
+          <div class="list-icon alarm-icon"></div>
+          <div class="list-action alarm-action">播放</div>
+          <h3 class="alarm-time">12月12日 9:34</h3>
+          <p class="alarm-title">更新到23集</p>
+        </li>
+                <li class="list-item alarm-item" data-id="<%- item.id %>">
+          <div class="list-icon alarm-icon"></div>
+          <div class="list-action alarm-action">播放</div>
+          <h3 class="alarm-time">12月12日 9:34</h3>
+          <p class="alarm-title">更新到23集</p>
+        </li>
+                <li class="list-item alarm-item" data-id="<%- item.id %>">
+          <div class="list-icon alarm-icon"></div>
+          <div class="list-action alarm-action">播放</div>
+          <h3 class="alarm-time">12月12日 9:34</h3>
+          <p class="alarm-title">更新到23集</p>
+        </li-->
+
+      <script id="tpl-alarm-item" type="text/x-tpl">
+      <% for (var i = 0, len = alarmCollection.length, item; i < len; i++) {
+           item = alarmCollection.at(i).attributes;
+      %>
+        <li class="list-item alarm-item" data-url="<%- item.readurl %>">
+          <div class="list-icon alarm-icon"></div>
+          <div class="list-action alarm-action">播放</div>
+          <h3 class="alarm-time"><%- item.timestamp %></h3>
+          <p class="alarm-title"><%- item.content %></p>
+        </li>
+      <% } %>
+      </script>
+      </ul>
+      <!-- 列表 End -->
+    </div>
+    <div class="ft"></div>
+  </div>
+  <!-- 详情页 End -->
+</div>
+<script src="/resource/js/lib/require.js" data-main="/resource/js/alarm/index-main"></script>
+</body>
+</html>

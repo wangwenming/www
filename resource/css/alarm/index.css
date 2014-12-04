@@ -1,0 +1,250 @@
+.g-clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.g-clearfix{zoom:1;}
+
+#pages {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.page {
+    display: none;
+}
+
+.hd {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    color: #000;
+    text-align: center;
+    background: #fefefe;
+    font-size: 14px;
+    font-weight: normal;
+    border-bottom: 1px solid #eaeaea;
+}
+.hd .btn {
+    position: absolute;
+    display: block;
+    background-size: 100% 100%;
+}
+.hd .home {
+    left: 12px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-image: url(/resource/img/alarm/ico-me.png);
+}
+.hd .back {
+    left: 12px;
+    top: 12px;
+    width: 10px;
+    height: 17px;
+    background-image: url(/resource/img/alarm/ico-back-arrow.png);
+}
+
+.carousel {
+    position: relative;
+    background: #f4f4f4;
+    padding-bottom: 5px;
+}
+.carousel h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    color: #fff;
+    padding-left: 16px;
+    font-weight: normal;
+}
+.carousel img {
+    width: 100%;
+    vertical-align: top;
+}
+
+/* 列表项 */
+.list-item {
+    border-bottom: 1px solid #e4e4e4;
+    background: #fff;
+}
+.list-item:first-child {
+    border-top: 1px solid #e4e4e4;
+}
+/* 列表项左侧图标 */
+.list-icon {
+    float: left;
+}
+/* 列表项右侧操作 */
+.list-action {
+    float: right;
+}
+
+/* 分类项 */
+.cat-item {
+    height: 60px;
+}
+/* 分类项左侧图标 */
+.cat-icon {
+    margin-top: 14px;
+    margin-left: 21px;
+    width: 16px;
+    height: 13px;
+}
+.cat-icon img {
+    width: 16px;
+    height: 13px;
+}
+/* 分类项标题 */
+.cat-title {
+    margin: 10px 48px 0 55px;
+    font-size: 14px;
+    color: #333;
+    line-height: 22px;
+}
+/* 分类项补充说明文字 */
+.cat-desc {
+    margin: 0 48px 0 55px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #666;
+}
+/* 分类项右侧操作 */
+.cat-action {
+    width: 48px;
+    height: 100%;
+    background: url(/resource/img/alarm/ico-right-arrow.png) no-repeat center center;
+    background-size: 8px 14px;
+}
+
+/* 提醒项 */
+.event-item {
+    height: 78px;
+}
+.event-item:first-child {
+    border-top: none;
+}
+/* 提醒项左侧配图 */
+.event-img {
+    width: 80px;
+    height: 62px;
+    margin-left: 8px;
+}
+.event-img img {
+    width: 80px;
+    height: 62px;
+}
+/* 提醒项标题 */
+.event-title {
+    margin: 10px 66px 0 104px;
+    font-size: 14px;
+    color: #333;
+    line-height: 22px;
+}
+/* 提醒项补充说明文字 */
+.event-desc {
+    margin: 0 66px 0 104px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #666;
+}
+/* 提醒项右侧操作 */
+.event-action {
+    width: 66px;
+    height: 100%;
+    background-image: url(/resource/img/alarm/ico-add.png);
+    background-size: 22px 22px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.event-item-subscribed .event-action {
+    background-image: url(/resource/img/alarm/ico-alarm.png);
+}
+
+.poster {
+    position: relative;
+}
+.poster img {
+    width: 100%;
+    vertical-align: top;
+}
+.poster-desc {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    padding-left: 15px;
+    background-color: rgba(0, 0, 0, .6);
+    color: #fff;
+}
+.poster-desc h3 {
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 7px;
+}
+.poster-desc p {
+    font-size: 12px;
+    line-height: 20px;
+}
+.poster-action {
+    float: right;
+    width: 68px;
+    height: 100%;
+    background-image: url(/resource/img/alarm/ico-add.png);
+    background-size: 22px 22px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.alarm-item {
+    height: 66px;
+}
+.alarm-icon {
+    border-right: 2px solid #eaeaea;
+    position: relative;
+    width: 11px;
+    height: 100%;
+}
+.alarm-icon::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: #eaeaea;
+    top: 18px;
+    right: -5px;
+}
+.alarm-time {
+    font-size: 11px;
+    line-height: 15px;
+    padding-top: 16px;
+    color: #c9c9c9;
+    margin-left: 22px;
+}
+.alarm-title {
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 4px;
+    margin-left: 22px;
+}
+.alarm-action {
+    width: 48px;
+    height: 22px;
+    background: #54be20;
+    border-radius: 2px;
+    margin-right: 16px;
+    margin-top: 22px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    line-height: 22px;
+    cursor: pointer;
+}
+#page-detail .ft {
+    border-left: 2px solid #eaeaea;
+    height: 100px;
+    margin-left: 11px;
+}
