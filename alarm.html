@@ -86,15 +86,35 @@ function setWid(v) {
     </div>
     <div class="bd">
       <!-- 大图 Begin -->
-      <div class="poster">
+      <!--div class="poster">
         <img>
         <div class="poster-desc">
           <div class="poster-action"></div>
           <h3>绝命毒师第四季</h3>
           <p>搜狐 每周日6:00 更新</p>
         </div>
-      </div>
+      </div-->
       <!-- 大图 End -->
+
+      <!-- 小说详情 Begin -->
+      <div class="poster novel-poster g-clearfix">
+      <script id="tpl-poster" type="text/x-tpl">
+        <div class="g-clearfix">
+          <img src="<%= coverImg %>">
+          <div class="novel-meta">
+            <h3><%- name %></h3>
+            <dl class="le-dl g-clearfix">
+              <dt>作者：</dt><dd>王文凯</dd>
+              <dt>类型：</dt><dd>科幻</dd>
+              <dt>状态：</dt><dd>连载中</dd>
+            </dl>
+          </div>
+        </div>
+        <p class="poster-desc">简介 : <%- title %></p>
+        <div class="poster-action">+</div>
+        </script>
+      </div>
+      <!-- 小说详情 End -->
 
       <!-- 列表 Begin -->
       <ul id="alarm-list">
