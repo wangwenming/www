@@ -161,6 +161,7 @@
     background-image: url(/resource/img/alarm/ico-alarm.png);
 }
 
+/*
 .poster {
     position: relative;
 }
@@ -196,6 +197,7 @@
     background-position: center center;
     background-repeat: no-repeat;
 }
+*/
 
 .alarm-item {
     height: 66px;
@@ -243,8 +245,81 @@
     line-height: 22px;
     cursor: pointer;
 }
+
+.alarm-item:first-child {
+    height: 82px;
+}
+.alarm-item:first-child .alarm-icon::before {
+    top: 30px;
+}
+.alarm-item:first-child .alarm-time {
+    padding-top: 32px;
+}
+.alarm-item:first-child .alarm-action {
+    margin-top: 38px;
+}
+
 #page-detail .ft {
     border-left: 2px solid #eaeaea;
     height: 100px;
     margin-left: 11px;
 }
+
+
+.novel-poster {
+background-color: #5085ba;
+color: #fff;
+position: relative;
+border-bottom: 4px solid #eee;
+border-top: 4px solid #eee;
+padding: 22px 20px;
+}
+.novel-poster img {
+width: 62px;
+height: 78px;
+float: left;
+margin-right: 20px;
+}
+.novel-meta {
+float: left;
+}
+.poster-action {
+position: absolute;
+background-color: #54be20;
+width: 52px;
+height: 52px;
+border: 2px solid #fff;
+border-radius: 30px;
+line-height: 52px;
+text-align: center;
+bottom: -26px;
+right: 14px;
+font-size: 24px;
+}
+.novel-meta h3 {
+font-size: 16px;
+line-height: 22px;
+}
+.novel-meta dl {
+font-size: 12px;
+line-height: 16px;
+margin-top: 6px;
+}
+.poster-desc {
+font-size: 14px;
+line-height: 20px;
+margin-top: 8px;
+display: block;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+max-height: 60px;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.le-dl:after,
+.le-dl:before{display: table;content: "";line-height:0;clear:both;}
+.le-dl{*zoom:1;}
+.le-dl dt,
+.le-dl dd{overflow:hidden;}
+.le-dl dt{float:left;clear:left;text-align:right;text-overflow:ellipsis;white-space: nowrap;}
