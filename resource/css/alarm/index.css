@@ -118,38 +118,38 @@
 }
 
 /* 提醒项 */
-.event-item {
+.item-item {
     height: 78px;
 }
-.event-item:first-child {
+.item-item:first-child {
     border-top: none;
 }
 /* 提醒项左侧配图 */
-.event-img {
+.item-img {
     width: 80px;
     height: 62px;
     margin-left: 8px;
 }
-.event-img img {
+.item-img img {
     width: 80px;
     height: 62px;
 }
 /* 提醒项标题 */
-.event-title {
+.item-title {
     margin: 10px 66px 0 104px;
     font-size: 14px;
     color: #333;
     line-height: 22px;
 }
 /* 提醒项补充说明文字 */
-.event-desc {
+.item-desc {
     margin: 0 66px 0 104px;
     font-size: 12px;
     line-height: 20px;
     color: #666;
 }
 /* 提醒项右侧操作 */
-.event-action {
+.item-action {
     width: 66px;
     height: 100%;
     background-image: url(/resource/img/alarm/ico-add.png);
@@ -157,7 +157,7 @@
     background-position: center center;
     background-repeat: no-repeat;
 }
-.event-item-subscribed .event-action {
+.item-item-subscribed .item-action {
     background-image: url(/resource/img/alarm/ico-alarm.png);
 }
 

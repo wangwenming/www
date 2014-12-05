@@ -11,10 +11,10 @@ define([
         el: $('#page-detail'),
         initialize: function(options) {
             this.prevPageView = options.prevPageView;
-            this.eventModel = options.eventModel;
+            this.itemModel = options.itemModel;
 
             this.detailModel = new DetailModel({
-                eventModel: options.eventModel
+                itemModel: options.itemModel
             });
 
             // 显示框架

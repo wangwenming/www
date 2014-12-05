@@ -3,8 +3,9 @@ define([
     'zepto',
     'deferred',
     'backbone',
-    'alarm/views/category-list'
-], function(_, $, deferred, Backbone, CategoryListView) {
+    'alarm/views/category-list',
+    'alarm/views/my-page',
+], function(_, $, deferred, Backbone, CategoryListView, MyPageView) {
     var HomePageView = Backbone.View.extend({
         el: $('#page-home'),
         initialize: function() {
@@ -22,7 +23,8 @@ define([
             'click .home': 'goHome'
         },
         goHome: function(event) {
-            alert('功能未实现');
+            var myPageView = new MyPageView({prevPageView: this});
+            this.$el.hide();
         }
     });
 

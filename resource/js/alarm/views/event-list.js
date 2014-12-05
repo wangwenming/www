@@ -3,17 +3,17 @@ define([
     'zepto',
     'deferred',
     'backbone',
-    'alarm/collections/event',
+    'alarm/collections/item',
     'alarm/views/detail-page'
-], function(_, $, deferred, Backbone, EventCollection, DetailPageView) {
-    var eventListTpl = _.template($('#tpl-event-item').html());
+], function(_, $, deferred, Backbone, ItemCollection, DetailPageView) {
+    var itemListTpl = _.template($('#tpl-item-item').html());
 
-    var EventListView = Backbone.View.extend({
-        el: $('#event-list'),
+    var ItemListView = Backbone.View.extend({
+        el: $('#item-list'),
         initialize: function(options) {
             var self = this;
 
-            this.collection = new EventCollection({
+            this.collection = new ItemCollection({
                 caterogyModel: options.caterogyModel
             });
             this.pageView = options.pageView;
@@ -32,15 +32,15 @@ define([
             });
         },
         render: function() {
-            var html = eventListTpl({
-                    eventCollection: this.collection
+            var html = itemListTpl({
+                    itemCollection: this.collection
                 });
             this.$el.html(html);
         },
         // 有先后顺序
         events: {
-            'click .event-action': 'toggleSubscription',
-            'click .event-item': 'navigateToDetail'
+            'click .item-action': 'toggleSubscription',
+            'click .item-item': 'navigateToDetail'
         },
         toggleSubscription: function(event) {
             var id = $(event.target).closest('.list-item').data('id'),
@@ -55,9 +55,9 @@ define([
             }
 
             var id = $(event.target).closest('.list-item').data('id'),
-                eventModel = this.collection.get(id),
+                itemModel = this.collection.get(id),
                 detailPageView = new DetailPageView({
-                    eventModel: eventModel,
+                    itemModel: itemModel,
                     prevPageView: this.pageView
                 });
 
@@ -65,5 +65,5 @@ define([
         }
     });
 
-    return EventListView;
+    return ItemListView;
 });

@@ -4,8 +4,8 @@ define([
     'deferred',
     'backbone',
     'alarm/collections/category',
-    'alarm/views/event-list-page'
-], function(_, $, deferred, Backbone, CategoryCollection, EventListPageView) {
+    'alarm/views/item-list-page'
+], function(_, $, deferred, Backbone, CategoryCollection, ItemListPageView) {
     var categoryListTpl = $('#tpl-cat-item').html();
     var CategoryListView = Backbone.View.extend({
         el: $('#index-cat-list'),
@@ -28,12 +28,12 @@ define([
             this.$el.html(html);
         },
         events: {
-            'click .cat-item': 'navigateToEventList'
+            'click .cat-item': 'navigateToItemList'
         },
-        navigateToEventList: function(event) {
+        navigateToItemList: function(event) {
             var id = $(event.target).closest('.list-item').data('id'),
                 caterogyModel = this.collection.get(id),
-                eventListPageView = new EventListPageView({
+                itemListPageView = new ItemListPageView({
                     caterogyModel: caterogyModel,
                     prevPageView: this.pageView
                 });

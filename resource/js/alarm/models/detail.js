@@ -6,11 +6,11 @@ define([
     var DetailModel = Backbone.Model.extend({
         url: function() {
             return config.url('/remind/getDetail', {
-                id: this.eventModel.get('id')
+                id: this.itemModel.get('id')
             });
         },
         initialize: function(options) {
-            this.eventModel = options.eventModel;
+            this.itemModel = options.itemModel;
             this.alarmCollection = new AlarmCollection();
         },
         parse: function(response) {

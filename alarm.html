@@ -51,23 +51,23 @@ function setWid(v) {
   <!-- 首页 End -->
 
   <!-- 列表页 Begin -->
-  <div id="page-event-list" class="page">
+  <div id="page-item-list" class="page">
     <div class="hd">
         <a class="btn back"></a>
         <h2></h2>
     </div>
     <div class="bd">
       <!-- 列表 Begin -->
-      <ul id="event-list">
-      <script id="tpl-event-item" type="text/x-tpl">
-      <% for (var i = 0, len = eventCollection.length, item; i < len; i++) {
-           item = eventCollection.at(i).attributes;
+      <ul id="item-list">
+      <script id="tpl-item-item" type="text/x-tpl">
+      <% for (var i = 0, len = itemCollection.length, item; i < len; i++) {
+           item = itemCollection.at(i).attributes;
       %>
-        <li class="list-item event-item<% if (item.isRemind) { %> event-item-subscribed<% } %>" data-id="<%- item.id %>">
-          <div class="list-icon event-img"><img src="<%= item.coverImg %>"></div>
-          <div class="list-action event-action"></div>
-          <h3 class="event-title"><%- item.name %></h3>
-          <p class="event-desc"><%- item.desc %></p>
+        <li class="list-item item-item<% if (item.isRemind) { %> item-item-subscribed<% } %>" data-id="<%- item.id %>">
+          <div class="list-icon item-img"><img src="<%= item.coverImg %>"></div>
+          <div class="list-action item-action"></div>
+          <h3 class="item-title"><%- item.name %></h3>
+          <p class="item-desc"><%- item.desc %></p>
         </li>
       <% } %>
       </script>
@@ -116,6 +116,35 @@ function setWid(v) {
     <div class="ft"></div>
   </div>
   <!-- 详情页 End -->
+
+  <!-- 个人页 Begin -->
+  <div id="my-page" class="page">
+    <div class="hd">
+        <a class="btn back"></a>
+        <h2>我的提醒</h2>
+    </div>
+    <div class="bd">
+
+      <!-- 列表 Begin -->
+      <ul id="subscription-list">
+      <script id="tpl-subscription-item" type="text/x-tpl">
+      <% for (var i = 0, len = subscriptionCollection.length, item; i < len; i++) {
+           item = subscriptionCollection.at(i).attributes.uplist[0];
+      %>
+        <li class="list-item subscription-item" data-url="<%- item.readurl %>">
+          <div class="list-icon subscription-icon"></div>
+          <div class="list-action subscription-action">播放</div>
+          <h3 class="subscription-time"><%- item.timestamp %></h3>
+          <p class="subscription-title"><%- item.content %></p>
+        </li>
+      <% } %>
+      </script>
+      </ul>
+      <!-- 列表 End -->
+    </div>
+    <div class="ft"></div>
+  </div>
+  <!-- 个人页 End -->
 </div>
 <script src="/resource/js/lib/require.js" data-main="/resource/js/alarm/index-main"></script>
 </body>
