@@ -34,32 +34,6 @@ define([
                     subscriptionCollection: this.collection
                 });
             this.$el.html(html);
-        },
-        // 有先后顺序
-        events: {
-            'click .item-action': 'toggleSubscription',
-            'click .item-item': 'navigateToDetail'
-        },
-        toggleSubscription: function(event) {
-            var id = $(event.target).closest('.list-item').data('id'),
-                model = this.collection.get(id);
-
-            model.save({isRemind: model.get('isRemind') ? 0 : 1});
-        },
-        navigateToDetail: function(event) {
-            // Backbone事件无法阻止冒泡
-            if ($(event.target).is('.list-action')) {
-                return;
-            }
-
-            var id = $(event.target).closest('.list-item').data('id'),
-                itemModel = this.collection.get(id),
-                detailPageView = new DetailPageView({
-                    itemModel: itemModel,
-                    prevPageView: this.pageView
-                });
-
-            this.pageView.$el.hide();
         }
     });
 
