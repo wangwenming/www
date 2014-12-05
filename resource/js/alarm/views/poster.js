@@ -3,9 +3,10 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'alarm/tool',
     'alarm/collections/event',
     'alarm/views/detail-page'
-], function(_, $, deferred, Backbone, EventCollection, DetailPageView) {
+], function(_, $, deferred, Backbone, tool, EventCollection, DetailPageView) {
     var tpl = _.template($('#tpl-poster').html());
 
     var PosterView = Backbone.View.extend({
@@ -14,12 +15,10 @@ define([
             this.render();
         },
         render: function() {
-            this.$el.html(tpl(this.model.attributes));
-            /*
-            $('img', this.$el).attr('src', model.get('coverImg'));
-            $('h3', this.$el).text(model.get('name'));
-            $('p', this.$el).text(model.get('title'));
-            */
+            this.$el.html(tpl({
+                data: this.model.attributes,
+                tool: tool
+            }));
         }
     });
 

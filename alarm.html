@@ -100,9 +100,9 @@ function setWid(v) {
       <div class="poster novel-poster g-clearfix">
       <script id="tpl-poster" type="text/x-tpl">
         <div class="g-clearfix">
-          <img src="<%= coverImg %>">
+          <img src="<%= data.coverImg %>">
           <div class="novel-meta">
-            <h3><%- name %></h3>
+            <h3><%- data.name %></h3>
             <dl class="le-dl g-clearfix">
               <dt>作者：</dt><dd>王文凯</dd>
               <dt>类型：</dt><dd>科幻</dd>
@@ -110,7 +110,7 @@ function setWid(v) {
             </dl>
           </div>
         </div>
-        <p class="poster-desc">简介 : <%- title %></p>
+        <p class="poster-desc">简介 : <%- data.title %></p>
         <div class="poster-action">+</div>
         </script>
       </div>
@@ -124,8 +124,8 @@ function setWid(v) {
       %>
         <li class="list-item alarm-item" data-url="<%- item.readurl %>">
           <div class="list-icon alarm-icon"></div>
-          <div class="list-action alarm-action">播放</div>
-          <h3 class="alarm-time"><%- item.timestamp %></h3>
+          <div class="list-action alarm-action">阅读</div>
+          <h3 class="alarm-time"><%- tool.timeFormat(item.timestamp) %></h3>
           <p class="alarm-title"><%- item.content %></p>
         </li>
       <% } %>
