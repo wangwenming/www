@@ -160,7 +160,7 @@ function setWid(v) {
                 %>
                   <li class="list-item subscription-item" data-url="<%- item.readurl %>">
                     <div class="list-icon subscription-icon"></div>
-                    <h3 class="subscription-time"><%- uplist.timestamp %></h3>
+                    <h3 class="subscription-time"><%- tool.timeFormat(uplist.timestamp) %></h3>
                     <div class="list-icon subscription-img"><img src="<%= item.coverImg %>"></div>
                     <div class="list-action subscription-action"></div>
                     <h3 class="subscription-title"><%- uplist.content %></h3>
@@ -181,7 +181,7 @@ function setWid(v) {
                        item = subscribedCollection.at(i).attributes;
                   %>
                     <tr>
-                      <td class="subscribed-time"><div class="subscribed-date"><%- item.time%></div></td>
+                      <td class="subscribed-time"><div class="subscribed-date"><%- tool.timeFormat(item.time)%></div></td>
                       <td class="subscribed-content"><div class="subscribed-detail"><%- item.content%></div></td>
                     </tr>
                   <% } %>

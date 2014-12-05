@@ -4,8 +4,9 @@ define([
     'deferred',
     'backbone',
     'alarm/collections/subscribed',
-    'alarm/views/my-page'
-], function(_, $, deferred, Backbone, SubscribedCollection, MyPageView) {
+    'alarm/views/my-page',
+    'alarm/tool'
+], function(_, $, deferred, Backbone, SubscribedCollection, MyPageView, tool) {
     var subscribedListTpl = _.template($('#tpl-subscribed-item').html());
 
     var SubscribedListView = Backbone.View.extend({
@@ -31,7 +32,8 @@ define([
         },
         render: function() {
             var html = subscribedListTpl({
-                    subscribedCollection: this.collection
+                    subscribedCollection: this.collection,
+                    tool: tool
                 }),
                 height;
             this.$el.html(html);
