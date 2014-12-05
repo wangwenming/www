@@ -126,20 +126,44 @@ function setWid(v) {
     <div class="bd">
 
       <!-- 列表 Begin -->
-      <ul id="subscription-list">
-      <script id="tpl-subscription-item" type="text/x-tpl">
-      <% for (var i = 0, len = subscriptionCollection.length, item; i < len; i++) {
-           item = subscriptionCollection.at(i).attributes.uplist[0];
-      %>
-        <li class="list-item subscription-item" data-url="<%- item.readurl %>">
-          <div class="list-icon subscription-icon"></div>
-          <div class="list-action subscription-action">播放</div>
-          <h3 class="subscription-time"><%- item.timestamp %></h3>
-          <p class="subscription-title"><%- item.content %></p>
-        </li>
-      <% } %>
-      </script>
-      </ul>
+      <div class="le-tabview">
+          <ul class="le-tabs">
+            <li class="active border"><a href="#">当前提醒</a></li>
+            <li><a href="#">历史提醒</a></li>
+          </ul>
+          <div id="subscription-list">
+              <script id="tpl-subscription-item" type="text/x-tpl">
+                <ul>
+                <% for (var i = 0, len = subscriptionCollection.length, item, uplist; i < len; i++) {
+                     item = subscriptionCollection.at(i).attributes;
+                     uplist = item.uplist[0];
+                %>
+                  <li class="list-item subscription-item" data-url="<%- item.readurl %>">
+                    <div class="list-icon subscription-icon"></div>
+                    <h3 class="subscription-time"><%- uplist.timestamp %></h3>
+                    <div class="list-icon subscription-img"><img src="<%= item.coverImg %>"></div>
+                    <div class="list-action subscription-action"></div>
+                    <h3 class="subscription-title"><%- uplist.content %></h3>
+                  </li>
+                <% } %>
+                </ul>
+              </script>
+          </div>
+          <div id="subscribed-list">
+              <script id="tpl-subscribed-item" type="text/x-tpl">
+                 <table>
+                  <% for (var i = 0, len = subscribedCollection.length, item, uplist; i < len; i++) {
+                       item = subscribedCollection.at(i).attributes;
+                  %>
+                    <tr>
+                      <td>提醒时间</td>
+                      <td>内容</td>
+                    </tr>
+                  <% } %>
+                 </table>
+              </script>
+          </div>
+      </div>
       <!-- 列表 End -->
     </div>
     <div class="ft"></div>
