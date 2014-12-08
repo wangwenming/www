@@ -3,6 +3,9 @@
 li {
     list-style: none;
 }
+a {
+    text-decoration: none;
+}
 td tr {
     margin: 0;
     padding: 0;
@@ -32,19 +35,24 @@ td tr {
     display: block;
     background-size: 100% 100%;
 }
-.hd .home {
+.hd .back .btn {
+    left: 12px;
+    top: 12px;
+    width: 10px;
+    height: 17px;
+    background-image: url(/resource/img/alarm/ico-back-arrow.png);
+}
+.hd .home .btn {
     left: 12px;
     top: 10px;
     width: 20px;
     height: 20px;
     background-image: url(/resource/img/alarm/ico-me.png);
 }
-.hd .back {
-    left: 12px;
-    top: 12px;
-    width: 10px;
-    height: 17px;
-    background-image: url(/resource/img/alarm/ico-back-arrow.png);
+.hd .back , .hd .home {
+    float: left;
+    width: 40px;
+    height: 40px;
 }
 
 .carousel {
@@ -156,15 +164,15 @@ td tr {
 }
 /* 提醒项右侧操作 */
 .item-action, .subscription-action {
-    width: 66px;
-    height: 100%;
-    background-image: url(/resource/img/alarm/ico-add.png);
-    background-size: 22px 22px;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-.item-item-subscribed .item-action, .subscription-action {
-    background-image: url(/resource/img/alarm/ico-alarm.png);
+    display: inline-block;
+    background-color: #54BE20;
+    color: #fff;
+    text-align: center;
+    padding: 4px 10px;
+    margin-right: 10px;
+    border-radius: 2px;
+    margin-top: 14px;
+    font-size: 12px;
 }
 
 /*
@@ -288,8 +296,10 @@ td tr {
     line-height: 36px;
 }
 .le-tabview .le-tabs li a {
-    text-decoration: none;
     color: #363636;
+    width: 100%;
+    height: 36px;
+    display: inline-block;
 }
 .le-tabview .le-tabs .border {
     border-right: 1px solid #E9E9E9;
@@ -320,9 +330,6 @@ td tr {
 }
 .subscription-img, .subscription-title {
     margin-top: 10px;
-}
-.subscription-action {
-    height: 60px;
 }
 .subscription-title, .subscribed-detail{
     overflow: hidden;
@@ -378,20 +385,20 @@ td tr {
     top: 50%;
     left: 50%;
     z-index: 2;
-    width: 160px;
+    width: 228px;
     background-color: #fff;
-    margin-left: -80px;
-    margin-top: -35px;
+    margin-left: -114px;
+    margin-top: -53px;
+    font-size: 14px;
 }
 .dialog h3{
-    height: 44px;
-    font-size: 12px;
-    line-height: 44px;
+    height: 66px;
+    line-height: 66px;
     text-align: center;
     border-bottom: 1px solid #E8E8E8;
 }
 .dialog .confirm{
-    height: 26px;
+    height: 40px;
     background-color: #EFEFEF;
 }
 .dialog .confirm .delete-yes{
@@ -400,8 +407,8 @@ td tr {
 }
 .dialog .confirm span{
     display: inline-block;
-    width: 75px;
-    line-height: 26px;
+    width: 110px;
+    line-height: 40px;
     text-align: center;
 }
 .mask {

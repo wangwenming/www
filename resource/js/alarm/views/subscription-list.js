@@ -41,7 +41,7 @@ define([
                     tool: tool
                 });
             this.$el.html(html);
-            this.$dialog = $('.dialog, .mask');
+            this.$dialog = $('.dialog, .mask', this.$el);
         },
         events: {
             'click .subscription-action': 'cancelAlarm',

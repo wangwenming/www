@@ -18,7 +18,7 @@ function setWid(v) {
   <!-- 首页 Begin -->
   <div id="page-home" class="page">
     <div class="hd">
-        <a class="btn home"></a>
+        <a href="javascript:void(0)" class="home"><span class="btn"></span></a>
         <h2>全部</h2>
     </div>
     <div class="bd">
@@ -53,7 +53,7 @@ function setWid(v) {
   <!-- 列表页 Begin -->
   <div id="page-item-list" class="page">
     <div class="hd">
-        <a class="btn back"></a>
+        <a href="javascript:void(0)" class="back"><span class="btn"></span></a>
         <h2></h2>
     </div>
     <div class="bd">
@@ -65,11 +65,20 @@ function setWid(v) {
       %>
         <li class="list-item item-item<% if (item.isRemind) { %> item-item-subscribed<% } %>" data-id="<%- item.id %>">
           <div class="list-icon item-img"><img src="<%= item.coverImg %>"></div>
-          <div class="list-action item-action"></div>
+          <a href="javascript:void(0)" class="list-action item-action"><% if (item.isRemind) { %>退订<%} else {%>订阅<%}%></a>
           <h3 class="item-title"><%- item.name %></h3>
           <p class="item-desc"><%- item.desc %></p>
         </li>
       <% } %>
+        <div class="dialog">
+          <h3>你确定要删除这个提示吗？</h3>
+          <div class="confirm">
+            <span class="change-yes">是</span>
+            <span class="change-no">否</span>
+          </div>
+        </div>
+        <div class="mask">
+        </div>
       </script>
       </ul>
       <!-- 列表 End -->
@@ -81,7 +90,7 @@ function setWid(v) {
   <!-- 详情页 Begin -->
   <div id="page-detail" class="page">
     <div class="hd">
-        <a class="btn back"></a>
+        <a href="javascript:void(0)" class="back"><span class="btn"></span></a>
         <h2>添加提醒</h2>
     </div>
     <div class="bd">
@@ -140,7 +149,7 @@ function setWid(v) {
   <!-- 个人页 Begin -->
   <div id="my-page" class="page">
     <div class="hd">
-        <a class="btn back"></a>
+         <a href="javascript:void(0)" class="back"><span class="btn"></span></a>
         <h2>我的提醒</h2>
     </div>
     <div class="bd">
@@ -148,8 +157,8 @@ function setWid(v) {
       <!-- 列表 Begin -->
       <div class="le-tabview">
           <ul class="le-tabs">
-            <li class="active border subscription"><a href="#">当前提醒</a></li>
-            <li class="subscribed"><a href="#">历史提醒</a></li>
+            <li class="active border subscription"><a href="javascript:void(0)">当前提醒</a></li>
+            <li class="subscribed"><a href="javascript:void(0)">历史提醒</a></li>
           </ul>
           <div id="subscription-list">
               <script id="tpl-subscription-item" type="text/x-tpl">
@@ -162,7 +171,7 @@ function setWid(v) {
                     <div class="list-icon subscription-icon"></div>
                     <h3 class="subscription-time"><%- tool.timeFormat(uplist.timestamp) %></h3>
                     <div class="list-icon subscription-img"><img src="<%= item.coverImg %>"></div>
-                    <div class="list-action subscription-action"></div>
+                    <a href="javascript:void(0)" class="list-action subscription-action">退订</a>
                     <h3 class="subscription-title"><%- uplist.content %></h3>
                   </li>
                 <% } %>

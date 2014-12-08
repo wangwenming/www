@@ -10,6 +10,8 @@ define([
 
     var ItemListView = Backbone.View.extend({
         el: $('#item-list'),
+        id: null,
+        $dialog: null,
         initialize: function(options) {
             var self = this;
 
@@ -36,17 +38,28 @@ define([
                     itemCollection: this.collection
                 });
             this.$el.html(html);
+            // 弹泡的根节点缓存
+            this.$dialog = $('.dialog, .mask', this.$el);
         },
         // 有先后顺序
         events: {
             'click .item-action': 'toggleSubscription',
-            'click .item-item': 'navigateToDetail'
+            'click .item-item': 'navigateToDetail',
+            'click .change-yes': 'toggleSubscriptionYes',
+            'click .change-no': 'toggleSubscriptionNo'
         },
         toggleSubscription: function(event) {
-            var id = $(event.target).closest('.list-item').data('id'),
-                model = this.collection.get(id);
-
+            // 将id记下然后弹泡
+            this.id = $(event.target).closest('.list-item').data('id');
+            this.$dialog.show();
+        },
+        toggleSubscriptionYes: function() {
+            model = this.collection.get(this.id);
             model.save({isRemind: model.get('isRemind') ? 0 : 1});
+            this.$dialog.hide();
+        },
+        toggleSubscriptionNo: function() {
+            this.$dialog.hide();
         },
         navigateToDetail: function(event) {
             // Backbone事件无法阻止冒泡
