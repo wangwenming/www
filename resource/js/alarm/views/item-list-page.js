@@ -3,13 +3,13 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'page-history',
     'alarm/views/item-list'
-], function(_, $, deferred, Backbone, ItemListView) {
+], function(_, $, deferred, Backbone, pageHistory, ItemListView) {
     var ItemListPageView = Backbone.View.extend({
         el: $('#page-item-list'),
         initialize: function(options) {
             this.caterogyModel = options.caterogyModel;
-            this.prevPageView = options.prevPageView;
 
             var itemListView = new ItemListView({
                     caterogyModel: this.caterogyModel,
@@ -24,8 +24,7 @@ define([
             'click .back': 'back'
         },
         back: function() {
-            this.$el.hide();
-            this.prevPageView.$el.show();
+            pageHistory.back();
         }
     });
 

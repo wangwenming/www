@@ -4,9 +4,8 @@ define([
     'deferred',
     'backbone',
     'alarm/tool',
-    'alarm/collections/event',
     'alarm/views/detail-page'
-], function(_, $, deferred, Backbone, tool, EventCollection, DetailPageView) {
+], function(_, $, deferred, Backbone, tool, DetailPageView) {
     var tpl = _.template($('#tpl-poster').html());
 
     var PosterView = Backbone.View.extend({
