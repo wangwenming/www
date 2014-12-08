@@ -3,9 +3,10 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'page-history',
     'alarm/collections/item',
     'alarm/views/detail-page'
-], function(_, $, deferred, Backbone, ItemCollection, DetailPageView) {
+], function(_, $, deferred, Backbone, pageHistory, ItemCollection, DetailPageView) {
     var itemListTpl = _.template($('#tpl-item-item').html());
 
     var ItemListView = Backbone.View.extend({
@@ -54,14 +55,19 @@ define([
                 return;
             }
 
-            var id = $(event.target).closest('.list-item').data('id'),
-                itemModel = this.collection.get(id),
-                detailPageView = new DetailPageView({
-                    itemModel: itemModel,
-                    prevPageView: this.pageView
-                });
+            var detailPageView,
+                id = $(event.target).closest('.list-item').data('id'),
+                cacheId = 'DetailPageView_' + id,
+                itemModel = this.collection.get(id);
 
-            this.pageView.$el.hide();
+            // 从历史记录查找，或者new
+            if (!(detailPageView = pageHistory.get(cacheId))) {
+                detailPageView = new DetailPageView({
+                    itemModel: itemModel
+                });
+            }
+
+            pageHistory.push(cacheId, detailPageView);
         }
     });
 

@@ -3,9 +3,10 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'page-history',
     'alarm/collections/category',
     'alarm/views/item-list-page'
-], function(_, $, deferred, Backbone, CategoryCollection, ItemListPageView) {
+], function(_, $, deferred, Backbone, pageHistory, CategoryCollection, ItemListPageView) {
     var categoryListTpl = $('#tpl-cat-item').html();
     var CategoryListView = Backbone.View.extend({
         el: $('#index-cat-list'),
@@ -28,18 +29,22 @@ define([
             this.$el.html(html);
         },
         events: {
-            'click .cat-item': 'navigateToItemList'
+            'click .cat-item': 'navigateToItemListPage'
         },
-        navigateToItemList: function(event) {
-            console.log('navigateToItemList');
-            var id = $(event.target).closest('.list-item').data('id'),
-                caterogyModel = this.collection.get(id),
-                itemListPageView = new ItemListPageView({
-                    caterogyModel: caterogyModel,
-                    prevPageView: this.pageView
-                });
+        navigateToItemListPage: function(event) {
+            var itemListPageView,
+                id = $(event.target).closest('.list-item').data('id'),
+                cacheId = 'ItemListPageView_' + id,
+                caterogyModel = this.collection.get(id);
 
-            this.pageView.$el.hide();
+            // 从历史记录查找，或者new
+            if (!(itemListPageView = pageHistory.get(cacheId))) {
+                itemListPageView = new ItemListPageView({
+                    caterogyModel: caterogyModel
+                });
+            }
+
+            pageHistory.push(cacheId, itemListPageView);
         }
     });
 

@@ -3,14 +3,14 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'page-history',
     'alarm/models/detail',
     'alarm/views/poster',
     'alarm/views/alarm-list',
-], function(_, $, deferred, Backbone, DetailModel, PosterView, AlarmListView) {
+], function(_, $, deferred, Backbone, pageHistory, DetailModel, PosterView, AlarmListView) {
     var DetailPageView = Backbone.View.extend({
         el: $('#page-detail'),
         initialize: function(options) {
-            this.prevPageView = options.prevPageView;
             this.itemModel = options.itemModel;
 
             this.detailModel = new DetailModel({
@@ -46,8 +46,7 @@ define([
             'click .back': 'back'
         },
         back: function(event) {
-            this.$el.hide();
-            this.prevPageView.$el.show();
+            pageHistory.back();
         }
     });
 

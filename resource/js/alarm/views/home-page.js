@@ -4,16 +4,14 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'page-history',
     'alarm/views/category-list',
     'alarm/views/my-page'
-], function(exports, _, $, deferred, Backbone, CategoryListView, MyPageView) {
+], function(exports, _, $, deferred, Backbone, pageHistory, CategoryListView, MyPageView) {
     var HomePageView = Backbone.View.extend({
         el: $('#page-home'),
         initialize: function(options) {
             options = options || {};
-
-            this.prevPageView = options.prevPageView;
-
             this.categoryListView = new CategoryListView({
                 pageView: this
             });
@@ -25,17 +23,12 @@ define([
             this.$el.show();
         },
         events: {
-            'click .home': 'goHome'
+            'click .home': 'navigateToMyPage'
         },
-        goHome: function(event) {
-            this.$el.hide();
-
-            if (!this.prevPageView) {
-                this.prevPageView = new MyPageView.constructor({
-                    prevPageView: this
-                });
+        navigateToMyPage: function(event) {
+            if (!pageHistory.back()) {
+                pageHistory.push('MyPageView', pageHistory.get('MyPageView') || new MyPageView.constructor());
             }
-            this.prevPageView.$el.show();
         }
     });
 

@@ -4,10 +4,11 @@ define([
     'zepto',
     'deferred',
     'backbone',
+    'page-history',
     'alarm/views/subscription-list',
     'alarm/views/subscribed-list',
     'alarm/views/home-page'
-], function(exports, _, $, deferred, Backbone, SubscriptionListView, SubscribedListView, HomePageView) {
+], function(exports, _, $, deferred, Backbone, pageHistory, SubscriptionListView, SubscribedListView, HomePageView) {
     var MyPageView = Backbone.View.extend({
         el: $('#my-page'),
         elSubscribed: $('#subscribed-list'),
@@ -15,7 +16,6 @@ define([
         initialize: function(options) {
             options = options || {};
 
-            this.prevPageView = options.prevPageView;
             this.subscriptionListView = new SubscriptionListView({
                 pageView: this,
                 collection: options.subscriptionCollection
@@ -34,20 +34,14 @@ define([
             this.$el.show();
         },
         events: {
-            'click .back': 'back',
+            'click .back': 'navigateToHomePage',
             'click .subscription': 'changeToSubscription',
             'click .subscribed': 'changeToSubscribed'
         },
-        back: function(event) {
-            this.$el.hide();
-
-            if (!this.prevPageView) {
-                this.prevPageView = new HomePageView.constructor({
-                    prevPageView: this
-                });
+        navigateToHomePage: function(event) {
+            if (!pageHistory.back()) {
+                pageHistory.push('HomePageView', pageHistory.get('HomePageView') || new HomePageView.constructor());
             }
-
-            this.prevPageView.$el.show();
         },
         changeToSubscription: function(event) {
             $('.active').removeClass('active');
