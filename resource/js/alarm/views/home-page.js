@@ -4,7 +4,7 @@ define([
     'deferred',
     'backbone',
     'alarm/views/category-list',
-    'alarm/views/my-page',
+    'alarm/views/my-page'
 ], function(_, $, deferred, Backbone, CategoryListView, MyPageView) {
     var HomePageView = Backbone.View.extend({
         el: $('#page-home'),

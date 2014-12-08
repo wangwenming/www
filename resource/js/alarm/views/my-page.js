@@ -5,13 +5,14 @@ define([
     'backbone',
     'alarm/views/subscription-list',
     'alarm/views/subscribed-list',
-], function(_, $, deferred, Backbone, SubscriptionListView, SubscribedListView) {
+    'alarm/views/home-page'
+], function(_, $, deferred, Backbone, SubscriptionListView, SubscribedListView, HomePageView) {
     var MyPageView = Backbone.View.extend({
         el: $('#my-page'),
         elSubscribed: $('#subscribed-list'),
         elSubsription: $('#subscription-list'),
         initialize: function(options) {
-            this.prevPageView = options.prevPageView;
+            this.prevPageView = options ? options.prevPageView : '';
             this.subscriptionListView = new SubscriptionListView({
                 pageView: this
             });
@@ -32,8 +33,13 @@ define([
             'click .subscribed': 'changeToSubscribed'
         },
         back: function(event) {
+
             this.$el.hide();
-            this.prevPageView.$el.show();
+            if (this.prevPageView) {
+                this.prevPageView.$el.show();
+            } else {
+                this.homePageView();
+            }
         },
         changeToSubscription: function(event) {
             $('.active').removeClass('active');
@@ -48,6 +54,9 @@ define([
             this.SubscribedListView.bootstrap();
             this.elSubsription.hide();
             this.elSubscribed.show();
+        },
+        homePageView: function() {
+            var homePageView = new HomePageView();
         }
     });
 

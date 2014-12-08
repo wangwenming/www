@@ -372,6 +372,52 @@ td tr {
     margin-right: 24px;
     margin-left: 14px;
 }
+.dialog{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 160px;
+    background-color: #fff;
+    margin-left: -80px;
+    margin-top: -35px;
+}
+.dialog h3{
+    height: 44px;
+    font-size: 12px;
+    line-height: 44px;
+    text-align: center;
+    border-bottom: 1px solid #E8E8E8;
+}
+.dialog .confirm{
+    height: 26px;
+    background-color: #EFEFEF;
+}
+.dialog .confirm .delete-yes{
+    background-color: #F9F9F9;
+    border-right: 1px solid #e8e8e8;
+}
+.dialog .confirm span{
+    display: inline-block;
+    width: 75px;
+    line-height: 26px;
+    text-align: center;
+}
+.mask {
+    background: #000;
+    display: none;
+    filter: alpha(opacity=40);
+    height: 100%;
+    left: 0;
+    opacity: .4;
+    overflow: hidden;
+    position: fixed;
+    _position: absolute;
+    top: 0;
+    width: 100%;
+    zoom: 1;
+}
 
 .novel-poster {
 background-color: #5085ba;

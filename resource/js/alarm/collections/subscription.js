@@ -4,10 +4,10 @@ define([
     'deferred',
     'backbone',
     'alarm/config',
-    'alarm/models/subscription'
-], function(_, $, deferred, Backbone, config, SubscriptionModel) {
+    'alarm/models/item'
+], function(_, $, deferred, Backbone, config, ItemModel) {
     var SubscriptionCollection = Backbone.Collection.extend({
-        model: SubscriptionModel,
+        model: ItemModel,
         url: function () {
             return config.url('/remind/getMyRemind');
         },

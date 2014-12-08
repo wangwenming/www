@@ -158,7 +158,7 @@ function setWid(v) {
                      item = subscriptionCollection.at(i).attributes;
                      uplist = item.uplist[0];
                 %>
-                  <li class="list-item subscription-item" data-url="<%- item.readurl %>">
+                  <li class="list-item subscription-item" data-url="<%- item.readurl %>" data-id="<%- item.id %>">
                     <div class="list-icon subscription-icon"></div>
                     <h3 class="subscription-time"><%- tool.timeFormat(uplist.timestamp) %></h3>
                     <div class="list-icon subscription-img"><img src="<%= item.coverImg %>"></div>
@@ -167,6 +167,15 @@ function setWid(v) {
                   </li>
                 <% } %>
                 </ul>
+                <div class="dialog">
+                  <h3>你确定要删除这个提示吗？</h3>
+                  <div class="confirm">
+                    <span class="delete-yes">是</span>
+                    <span class="delete-no">否</span>
+                  </div>
+                </div>
+                <div class="mask">
+                </div>
               </script>
           </div>
           <div id="subscribed-list">

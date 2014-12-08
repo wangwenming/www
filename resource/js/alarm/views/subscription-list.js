@@ -11,6 +11,8 @@ define([
 
     var SubscriptionListView = Backbone.View.extend({
         el: $('#subscription-list'),
+        id: null,
+        $dialog: null,
         initialize: function(options) {
             var self = this;
 
@@ -18,7 +20,6 @@ define([
             this.pageView = options.pageView;
 
             // 函数的this是collection
-            // this.collection.on('change:isRemind', this.render);
             this.collection.on('change:isRemind', function() {
                 self.render();
             });
@@ -36,6 +37,24 @@ define([
                     tool: tool
                 });
             this.$el.html(html);
+            this.$dialog = $('.dialog, .mask');
+        },
+        events: {
+            'click .subscription-action': 'cancelAlarm',
+            'click .delete-yes': 'cancelYes',
+            'click .delete-no': 'cancelNo'
+        },
+        cancelAlarm: function(event) {
+            this.id = $(event.target).closest('.list-item').data('id');
+            this.$dialog.show();
+        },
+        cancelYes: function() {
+            model = this.collection.get(this.id);
+            model.save({isRemind: model.get('isRemind') ? 0 : 1});
+            this.$dialog.hide();
+        },
+        cancelNo: function() {
+            this.$dialog.hide();
         }
     });
 
