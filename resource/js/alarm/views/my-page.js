@@ -13,15 +13,21 @@ define([
         elSubscribed: $('#subscribed-list'),
         elSubsription: $('#subscription-list'),
         initialize: function(options) {
-            this.prevPageView = options ? options.prevPageView : '';
+            options = options || {};
+
+            this.prevPageView = options.prevPageView;
             this.subscriptionListView = new SubscriptionListView({
-                pageView: this
+                pageView: this,
+                collection: options.subscriptionCollection
             });
             this.SubscribedListView = new SubscribedListView({
                 pageView: this
             });
             // 初始化数据
-            this.subscriptionListView.bootstrap();
+            if (!options.subscriptionCollection) {
+                this.subscriptionListView.bootstrap();
+            }
+
             this.render();
         },
         render: function() {
@@ -33,13 +39,15 @@ define([
             'click .subscribed': 'changeToSubscribed'
         },
         back: function(event) {
-
             this.$el.hide();
-            if (this.prevPageView) {
-                this.prevPageView.$el.show();
-            } else {
-                this.homePageView();
+
+            if (!this.prevPageView) {
+                this.prevPageView = new HomePageView.constructor({
+                    prevPageView: this
+                });
             }
+
+            this.prevPageView.$el.show();
         },
         changeToSubscription: function(event) {
             $('.active').removeClass('active');
@@ -54,9 +62,6 @@ define([
             this.SubscribedListView.bootstrap();
             this.elSubsription.hide();
             this.elSubscribed.show();
-        },
-        homePageView: function() {
-            var homePageView = new HomePageView.constructor();
         }
     });
 

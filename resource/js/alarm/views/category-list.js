@@ -31,6 +31,7 @@ define([
             'click .cat-item': 'navigateToItemList'
         },
         navigateToItemList: function(event) {
+            console.log('navigateToItemList');
             var id = $(event.target).closest('.list-item').data('id'),
                 caterogyModel = this.collection.get(id),
                 itemListPageView = new ItemListPageView({

@@ -9,7 +9,11 @@ define([
 ], function(exports, _, $, deferred, Backbone, CategoryListView, MyPageView) {
     var HomePageView = Backbone.View.extend({
         el: $('#page-home'),
-        initialize: function() {
+        initialize: function(options) {
+            options = options || {};
+
+            this.prevPageView = options.prevPageView;
+
             this.categoryListView = new CategoryListView({
                 pageView: this
             });
@@ -24,8 +28,14 @@ define([
             'click .home': 'goHome'
         },
         goHome: function(event) {
-            var myPageView = new MyPageView.constructor({prevPageView: this});
             this.$el.hide();
+
+            if (!this.prevPageView) {
+                this.prevPageView = new MyPageView.constructor({
+                    prevPageView: this
+                });
+            }
+            this.prevPageView.$el.show();
         }
     });
 

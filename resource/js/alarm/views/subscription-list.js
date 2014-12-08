@@ -16,8 +16,12 @@ define([
         initialize: function(options) {
             var self = this;
 
-            this.collection = new SubscriptionCollection();
+            this.collection = options.collection || new SubscriptionCollection();
             this.pageView = options.pageView;
+
+            if (options.collection) {
+                this.render();
+            }
 
             // 函数的this是collection
             this.collection.on('change:isRemind', function() {
