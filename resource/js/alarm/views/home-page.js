@@ -1,11 +1,12 @@
 define([
+    'exports',
     'underscore',
     'zepto',
     'deferred',
     'backbone',
     'alarm/views/category-list',
     'alarm/views/my-page'
-], function(_, $, deferred, Backbone, CategoryListView, MyPageView) {
+], function(exports, _, $, deferred, Backbone, CategoryListView, MyPageView) {
     var HomePageView = Backbone.View.extend({
         el: $('#page-home'),
         initialize: function() {
@@ -23,10 +24,10 @@ define([
             'click .home': 'goHome'
         },
         goHome: function(event) {
-            var myPageView = new MyPageView({prevPageView: this});
+            var myPageView = new MyPageView.constructor({prevPageView: this});
             this.$el.hide();
         }
     });
 
-    return HomePageView;
+    exports.constructor = HomePageView;
 });

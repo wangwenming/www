@@ -11,9 +11,9 @@ require([
         myPageView, homePageView;
     $.when(subscriptionCollection.fetch()).done(function() {
         if (subscriptionCollection.length > 0) {
-            myPageView = new MyPageView();
+            myPageView = new MyPageView.constructor();
         } else {
-            homePageView = new HomePageView();
+            homePageView = new HomePageView.constructor();
         }
     });
 });

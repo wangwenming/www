@@ -1,4 +1,5 @@
 define([
+    'exports',
     'underscore',
     'zepto',
     'deferred',
@@ -6,7 +7,7 @@ define([
     'alarm/views/subscription-list',
     'alarm/views/subscribed-list',
     'alarm/views/home-page'
-], function(_, $, deferred, Backbone, SubscriptionListView, SubscribedListView, HomePageView) {
+], function(exports, _, $, deferred, Backbone, SubscriptionListView, SubscribedListView, HomePageView) {
     var MyPageView = Backbone.View.extend({
         el: $('#my-page'),
         elSubscribed: $('#subscribed-list'),
@@ -21,7 +22,6 @@ define([
             });
             // 初始化数据
             this.subscriptionListView.bootstrap();
-           /* this.SubscribedListView.bootstrap();*/
             this.render();
         },
         render: function() {
@@ -56,9 +56,11 @@ define([
             this.elSubscribed.show();
         },
         homePageView: function() {
-            var homePageView = new HomePageView();
+            var homePageView = new HomePageView.constructor();
         }
     });
 
-    return MyPageView;
+    exports.constructor = MyPageView;
+
+    //return MyPageView;
 });
