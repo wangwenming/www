@@ -22,7 +22,7 @@ require([
         }
     });
 
-    window.back = function {
+    window.back = function() {
         pageHistory.back();
     }
 });
