@@ -24,6 +24,7 @@ define([
                         success: options.success,
                         error: options.error
                     });
+                    localStorage.removeItem('collections/subscription');
                     break;
                 case 'delete':
                     break;

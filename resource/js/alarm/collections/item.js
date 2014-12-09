@@ -8,6 +8,7 @@ define([
 ], function(_, $, deferred, Backbone, config, ItemModel) {
     var ItemCollection = Backbone.Collection.extend({
         model: ItemModel,
+        cacheTTL: 1800,
         url: function() {
             return config.url('/remind/getTypeDatalist', {
                 typeId: this.caterogyModel.get('id'),
@@ -17,9 +18,10 @@ define([
         },
         initialize: function(options) {
             this.caterogyModel = options.caterogyModel;
+            this.cacheKey = 'collections/item_' + this.caterogyModel.get('id');
         },
         parse: function(response) {
-            if (response.error != 0) {
+            if (response.error !== 0) {
                 return [];
             }
 

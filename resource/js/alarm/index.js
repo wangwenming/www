@@ -44,13 +44,13 @@ require([
                         ttl: cacheTTL,
                         data: resp
                     }));
-                }
+                };
             }
         }
 
         // Backbone.sync 必须 return xhr
         return sync(method, model, options);
-    }
+    };
 
     var subscriptionCollection = new SubscriptionCollection(),
         myPageView, homePageView;

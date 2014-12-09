@@ -513,5 +513,12 @@ text-overflow: ellipsis;
     -o-transition: opacity 1s;
     -ms-transition: opacity 1s;
     transition: opacity 1s;
+    opacity: 1;
+}
+.tipsHide {
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    transition: opacity 1s;
     opacity: 0;
 }
