@@ -44,7 +44,8 @@ define([
         },
         // 有先后顺序
         events: {
-            'click .item-action': 'toggleSubscription',
+            'click .item-action-cancel': 'toggleSubscription',
+            'click .item-action': 'toggleSubscriped',
             'click .item-item': 'navigateToDetail',
             'click .change-yes': 'toggleSubscriptionYes',
             'click .change-no': 'toggleSubscriptionNo'
@@ -61,6 +62,13 @@ define([
         },
         toggleSubscriptionNo: function() {
             this.$dialog.hide();
+        },
+        toggleSubscriped: function() {
+            var id = $(event.target).closest('.list-item').data('id');
+            model = this.collection.get(id);
+            $.when(model.save({isRemind: model.get('isRemind') ? 0 : 1})).done(function() {
+                $('.cancelSubscribeSuccess').addClass('tipsShow');
+            });
         },
         navigateToDetail: function(event) {
             // Backbone事件无法阻止冒泡

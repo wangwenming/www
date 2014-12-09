@@ -24,5 +24,5 @@ require([
 
     window.back = function() {
         pageHistory.back();
-    }
+    };
 });

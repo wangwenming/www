@@ -61,15 +61,15 @@ function back() {}
       <% for (var i = 0, len = itemCollection.length, item; i < len; i++) {
            item = itemCollection.at(i).attributes;
       %>
-        <li class="list-item item-item<% if (item.isRemind) { %> item-item-subscribed<% } %>" data-id="<%- item.id %>">
+        <li class="list-item item-item" data-id="<%- item.id %>">
           <div class="list-icon item-img"><img src="<%= item.coverImg %>"></div>
-          <a href="javascript:void(0)" class="list-action item-action"><% if (item.isRemind) { %>退订<%} else {%>订阅<%}%></a>
+          <a href="javascript:void(0)" class="list-action <% if (item.isRemind) { %> item-action-cancel<% } else { %> item-action<% } %>"><% if (item.isRemind) { %>退订<%} else {%>订阅<%}%></a>
           <h3 class="item-title"><%- item.name %></h3>
           <p class="item-desc"><%- item.desc %></p>
         </li>
       <% } %>
         <div class="dialog">
-          <h3>你确定要删除这个提示吗？</h3>
+          <h3>确定要取消订阅吗？</h3>
           <div class="confirm">
             <span class="change-yes">是</span>
             <span class="change-no">否</span>
@@ -82,6 +82,9 @@ function back() {}
       <!-- 列表 End -->
     </div>
     <div class="ft"></div>
+    <div class="cancelSubscribeSuccess">
+        订阅成功
+    </div>
   </div>
   <!-- 列表页 End -->
 
@@ -175,7 +178,7 @@ function back() {}
                 <% } %>
                 </ul>
                 <div class="dialog">
-                  <h3>你确定要删除这个提示吗？</h3>
+                  <h3>确定要取消订阅吗？</h3>
                   <div class="confirm">
                     <span class="delete-yes">是</span>
                     <span class="delete-no">否</span>
