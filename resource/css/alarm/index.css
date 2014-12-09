@@ -373,7 +373,7 @@ td tr {
     margin-left: 76px;
 }
 .subscribed-date {
-    margin-right: 10px;
+    margin-right: 6px;
 }
 .subscribed-detail {
     margin-right: 24px;
@@ -483,3 +483,15 @@ text-overflow: ellipsis;
 .le-dl dt,
 .le-dl dd{overflow:hidden;}
 .le-dl dt{float:left;clear:left;text-align:right;text-overflow:ellipsis;white-space: nowrap;}
+
+.loading {
+    position: absolute;
+    background: url(http://p1.qhimg.com/d/inn/619d4aab/ajax-loading.gif);
+    background-size: 100%;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}

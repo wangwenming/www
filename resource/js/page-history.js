@@ -26,7 +26,7 @@ define([
         console.log('after push: ', stack);
     }
 
-    function back() {return false;
+    function back() {
 
         console.log('before back: ', stack);
 

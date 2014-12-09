@@ -10,6 +10,7 @@ define([
 ], function(exports, _, $, deferred, Backbone, pageHistory, CategoryListView, MyPageView) {
     var HomePageView = Backbone.View.extend({
         el: $('#page-home'),
+        $loading: $('.loading'),
         initialize: function(options) {
             options = options || {};
             this.categoryListView = new CategoryListView({
@@ -21,12 +22,14 @@ define([
         },
         render: function() {
             this.$el.show();
+            this.$loading.hide();
         },
         events: {
             'click .home': 'navigateToMyPage'
         },
         navigateToMyPage: function(event) {
             if (!pageHistory.back()) {
+                this.$loading.show();
                 pageHistory.push('MyPageView', pageHistory.get('MyPageView') || new MyPageView.constructor());
             }
         }

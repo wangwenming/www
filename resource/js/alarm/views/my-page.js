@@ -13,6 +13,7 @@ define([
         el: $('#my-page'),
         elSubscribed: $('#subscribed-list'),
         elSubsription: $('#subscription-list'),
+        $loading: $('.loading'),
         initialize: function(options) {
             options = options || {};
 
@@ -32,6 +33,7 @@ define([
         },
         render: function() {
             this.$el.show();
+            this.$loading.hide();
         },
         events: {
             'click .back': 'navigateToHomePage',
@@ -40,6 +42,7 @@ define([
         },
         navigateToHomePage: function(event) {
             if (!pageHistory.back()) {
+                this.$loading.show();
                 pageHistory.push('HomePageView', pageHistory.get('HomePageView') || new HomePageView.constructor());
             }
         },
