@@ -8,6 +8,8 @@ define([
 ], function(_, $, deferred, Backbone, config, CategoryModel) {
     var CategoryCollection = Backbone.Collection.extend({
         model: CategoryModel,
+        cacheKey: 'collections/category',
+        cacheTTL: 86400,
         url: function() {
             return config.url('/remind/list', {
                 start: 0,
