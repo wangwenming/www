@@ -1,32 +1,47 @@
 define([
+    'exports',
     'underscore',
     'zepto',
     'deferred',
     'backbone',
-    'page-history',
+    'alarm/views/home-page',
     'alarm/views/item-list'
-], function(_, $, deferred, Backbone, pageHistory, ItemListView) {
+], function(exports, _, $, deferred, Backbone, HomePageView, ItemListView) {
     var ItemListPageView = Backbone.View.extend({
         el: $('#page-item-list'),
-        initialize: function(options) {
-            this.caterogyModel = options.caterogyModel;
-
-            var itemListView = new ItemListView({
-                    caterogyModel: this.caterogyModel,
-                    pageView: this
-                });
-
-            itemListView.bootstrap();
-
-            this.$el.show().find('.hd h2').text(this.caterogyModel.get('name'));
+        initialize: function() {
+            this.itemListView = ItemListView.getInstance();
+            this.itemListView.setPageView(this);
+        },
+        setCategoryModel: function(categoryModel) {
+            this.categoryModel = categoryModel;
+            this.itemListView.setCategoryModel(categoryModel);
+        },
+        bootstrap: function() {
+            return this.itemListView.bootstrap();
+        },
+        render: function() {
+            this.$el.show();
+            this.$el.find('.hd h2').text(this.categoryModel.get('name'));
         },
         events: {
             'click .back': 'back'
         },
         back: function() {
-            pageHistory.back();
+            var homePageView = HomePageView.getInstance();
+            homePageView.bootstrap();
+            homePageView.render();
+
+            this.$el.hide();
         }
     });
 
-    return ItemListPageView;
+    var instance;
+    exports.getInstance = function() {
+        if (!instance) {
+            instance = new ItemListPageView();
+        }
+
+        return instance;
+    };
 });

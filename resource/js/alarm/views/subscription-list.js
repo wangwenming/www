@@ -16,12 +16,8 @@ define([
         initialize: function(options) {
             var self = this;
 
-            this.collection = options.collection || new SubscriptionCollection();
+            this.collection = new SubscriptionCollection();
             this.pageView = options.pageView;
-
-            if (options.collection) {
-                this.render();
-            }
 
             // 函数的this是collection
             this.collection.on('change:isRemind', function() {
@@ -29,11 +25,15 @@ define([
             });
         },
         bootstrap: function() {
-            var self = this;
+            var self = this,
+                deferred = $.Deferred();
 
             $.when(this.collection.fetch()).done(function() {
+                deferred.resolve(!!self.collection.length);
                 self.render();
             });
+
+            return deferred;
         },
         render: function() {
             var html = subscriptionListTpl({

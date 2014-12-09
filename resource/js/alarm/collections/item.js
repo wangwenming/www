@@ -10,13 +10,13 @@ define([
         model: ItemModel,
         url: function() {
             return config.url('/remind/getTypeDatalist', {
-                typeId: this.caterogyModel.get('id'),
+                typeId: this.categoryModel.get('id'),
                 start: 0,
                 count: 10
             });
         },
-        initialize: function(options) {
-            this.caterogyModel = options.caterogyModel;
+        setCategoryModel: function(categoryModel) {
+            this.categoryModel = categoryModel;
         },
         parse: function(response) {
             if (response.error != 0) {

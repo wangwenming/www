@@ -1,32 +1,32 @@
 define([
+    'exports',
     'underscore',
     'zepto',
     'deferred',
     'backbone',
-    'page-history',
     'alarm/models/detail',
     'alarm/views/poster',
     'alarm/views/alarm-list',
-], function(_, $, deferred, Backbone, pageHistory, DetailModel, PosterView, AlarmListView) {
+    'alarm/views/item-list-page'
+], function(exports, _, $, deferred, Backbone, DetailModel, PosterView, AlarmListView, ItemListPageView) {
     var DetailPageView = Backbone.View.extend({
         el: $('#page-detail'),
-        initialize: function(options) {
-            this.itemModel = options.itemModel;
-
+        setItemModel: function(itemModel) {
+            this.itemModel = itemModel;
             this.detailModel = new DetailModel({
-                itemModel: options.itemModel
+                itemModel: itemModel
             });
-
-            // 显示框架
-            this.render();
-            // 异步显示详细内容
-            this.bootstrap();
         },
         bootstrap: function() {
-            var self = this;
+            var self = this,
+                deferred = $.Deferred();
+
             $.when(this.detailModel.fetch()).done(function() {
+                deferred.resolve();
                 self.renderContent();
             });
+
+            return deferred;
         },
         render: function() {
             this.$el.show();
@@ -46,9 +46,21 @@ define([
             'click .back': 'back'
         },
         back: function(event) {
-            pageHistory.back();
+            var itemListPageView = new ItemListPageView.getInstance();
+
+            itemListPageView.bootstrap();
+            itemListPageView.render();
+
+            this.$el.hide();
         }
     });
 
-    return DetailPageView;
+    var instance;
+    exports.getInstance = function() {
+        if (!instance) {
+            instance = new DetailPageView();
+        }
+
+        return instance;
+    };
 });
