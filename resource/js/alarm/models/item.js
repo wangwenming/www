@@ -13,20 +13,35 @@ define([
         },
         sync: function(method, model, options) {
             // CRUD
+            var url;
             switch (method) {
                 case 'update':
-                    var urlPath = model.get('isRemind') ? this.urlPathAdd : this.urlPathRemove,
+                    var urlPath = model.get('isRemind') ? this.urlPathAdd : this.urlPathRemove;
                         url = config.url(urlPath, {
                             id: model.get('id')
                         });
+
                     $.ajax({
                         url: url,
                         success: options.success,
                         error: options.error
                     });
+
                     localStorage.removeItem('collections/subscription');
                     break;
                 case 'delete':
+                    model.collection.remove(model);
+                    url = config.url(this.urlPathRemove, {
+                            id: model.get('id')
+                        });
+
+                    $.ajax({
+                        url: url,
+                        success: options.success,
+                        error: options.error
+                    });
+
+                    localStorage.removeItem('collections/subscription');
                     break;
                 default:
                     break;

@@ -29,7 +29,7 @@ define([
             this.subscriptionListView.bootstrap();
 
             this.$el.show();
-            // this.$loading.hide();
+            this.$loading.hide();
         },
         events: {
             'click .back': 'navigateToHomePage',

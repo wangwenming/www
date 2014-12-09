@@ -20,7 +20,7 @@ define([
             this.pageView = options.pageView;
 
             // 函数的this是collection
-            this.collection.on('change:isRemind', function() {
+            this.collection.on('remove', function() {
                 self.render();
             });
         },
@@ -54,7 +54,8 @@ define([
         },
         cancelYes: function() {
             model = this.collection.get(this.id);
-            model.save({isRemind: model.get('isRemind') ? 0 : 1});
+            // model.save({isRemind: model.get('isRemind') ? 0 : 1});
+            model.destroy();
             this.$dialog.hide();
         },
         cancelNo: function() {

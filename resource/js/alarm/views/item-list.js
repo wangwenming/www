@@ -106,7 +106,7 @@ define([
         }
 
         return instance;
-    };
+    }
 
     return {
         getInstance: getInstance

@@ -19,6 +19,7 @@ define([
         },
         render: function() {
             this.$el.show();
+            this.$loading.hide();
         },
         events: {
             'click .home': 'navigateToMyPage'
