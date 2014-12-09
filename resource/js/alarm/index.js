@@ -52,18 +52,33 @@ require([
         return sync(method, model, options);
     };
 
+    /*
     var subscriptionCollection = new SubscriptionCollection(),
         myPageView, homePageView;
     $.when(subscriptionCollection.fetch()).done(function() {
         if (subscriptionCollection.length > 0) {
-            myPageView = new MyPageView.constructor({
+            myPageView = MyPageView.getInstance({
                 subscriptionCollection: subscriptionCollection
             });
-            pageHistory.push('MyPageView', myPageView);
+            myPageView.render();
         } else {
-            homePageView = new HomePageView.constructor();
-            pageHistory.push('HomePageView', homePageView);
+            homePageView = HomePageView.getInstance();
+            // 显示
+            homePageView.render();
         }
+    });
+    */
+
+    var myPageView = MyPageView.getInstance();
+    $.when(myPageView.bootstrap()).done(function(hasMyData) {
+        if (hasMyData) {
+            myPageView.render();
+            return;
+        }
+
+        var homePageView = HomePageView.getInstance();
+        homePageView.bootstrap();
+        homePageView.render();
     });
 
     window.back = function() {

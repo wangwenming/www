@@ -11,14 +11,14 @@ define([
         cacheTTL: 1800,
         url: function() {
             return config.url('/remind/getTypeDatalist', {
-                typeId: this.caterogyModel.get('id'),
+                typeId: this.categoryModel.get('id'),
                 start: 0,
                 count: 10
             });
         },
-        initialize: function(options) {
-            this.caterogyModel = options.caterogyModel;
-            this.cacheKey = 'collections/item_' + this.caterogyModel.get('id');
+        setCategoryModel: function(categoryModel) {
+            this.categoryModel = categoryModel;
+            this.cacheKey = 'collections/item_' + this.categoryModel.get('id');
         },
         parse: function(response) {
             if (response.error !== 0) {

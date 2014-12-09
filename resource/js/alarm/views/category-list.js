@@ -3,23 +3,28 @@ define([
     'zepto',
     'deferred',
     'backbone',
-    'page-history',
     'alarm/collections/category',
     'alarm/views/item-list-page'
-], function(_, $, deferred, Backbone, pageHistory, CategoryCollection, ItemListPageView) {
+], function(_, $, deferred, Backbone, CategoryCollection, ItemListPageView) {
     var categoryListTpl = $('#tpl-cat-item').html();
     var CategoryListView = Backbone.View.extend({
         el: $('#index-cat-list'),
         initialize: function(options) {
             this.collection = new CategoryCollection();
-            this.pageView = options.pageView;
+        },
+        setPageView: function(pageView) {
+            this.pageView = pageView;
         },
         bootstrap: function() {
-            var self = this;
+            var self = this,
+                deferred = $.Deferred();
 
             $.when(this.collection.fetch()).done(function() {
+                deferred.resolve();
                 self.render();
             });
+
+            return deferred;
         },
         render: function() {
             var compiled = _.template(categoryListTpl),
@@ -32,21 +37,27 @@ define([
             'click .cat-item': 'navigateToItemListPage'
         },
         navigateToItemListPage: function(event) {
-            var itemListPageView,
-                id = $(event.target).closest('.list-item').data('id'),
-                cacheId = 'ItemListPageView_' + id,
-                caterogyModel = this.collection.get(id);
+            var id = $(event.target).closest('.list-item').data('id'),
+                itemListPageView = new ItemListPageView.getInstance();
 
-            // 从历史记录查找，或者new
-            if (!(itemListPageView = pageHistory.get(cacheId))) {
-                itemListPageView = new ItemListPageView({
-                    caterogyModel: caterogyModel
-                });
-            }
+            itemListPageView.setCategoryModel(this.collection.get(id));
+            itemListPageView.bootstrap();
+            itemListPageView.render();
 
-            pageHistory.push(cacheId, itemListPageView);
+            this.pageView.$el.hide();
         }
     });
 
-    return CategoryListView;
+    var instance;
+    function getInstance() {
+        if (!instance) {
+            instance = new CategoryListView();
+        }
+
+        return instance;
+    };
+
+    return {
+        getInstance: getInstance
+    };
 });

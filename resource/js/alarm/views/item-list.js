@@ -3,10 +3,9 @@ define([
     'zepto',
     'deferred',
     'backbone',
-    'page-history',
     'alarm/collections/item',
     'alarm/views/detail-page'
-], function(_, $, deferred, Backbone, pageHistory, ItemCollection, DetailPageView) {
+], function(_, $, deferred, Backbone, ItemCollection, DetailPageView) {
     var itemListTpl = _.template($('#tpl-item-item').html());
 
     var ItemListView = Backbone.View.extend({
@@ -16,10 +15,7 @@ define([
         initialize: function(options) {
             var self = this;
 
-            this.collection = new ItemCollection({
-                caterogyModel: options.caterogyModel
-            });
-            this.pageView = options.pageView;
+            this.collection = new ItemCollection();
 
             // 函数的this是collection
             // this.collection.on('change:isRemind', this.render);
@@ -27,12 +23,23 @@ define([
                 self.render();
             });
         },
+        setPageView: function(pageView) {
+            this.pageView = pageView;
+        },
+        setCategoryModel: function(categoryModel) {
+            this.categoryModel = categoryModel;
+            this.collection.setCategoryModel(categoryModel);
+        },
         bootstrap: function() {
-            var self = this;
+            var self = this,
+                deferred = $.Deferred();
 
             $.when(this.collection.fetch()).done(function() {
+                deferred.resolve();
                 self.render();
             });
+
+            return deferred;
         },
         render: function() {
             var html = itemListTpl({
@@ -80,21 +87,28 @@ define([
                 return;
             }
 
-            var detailPageView,
-                id = $(event.target).closest('.list-item').data('id'),
-                cacheId = 'DetailPageView_' + id,
-                itemModel = this.collection.get(id);
+            var id = $(event.target).closest('.list-item').data('id'),
+                itemModel = this.collection.get(id),
+                detailPageView = DetailPageView.getInstance();
 
-            // 从历史记录查找，或者new
-            if (!(detailPageView = pageHistory.get(cacheId))) {
-                detailPageView = new DetailPageView({
-                    itemModel: itemModel
-                });
-            }
+            detailPageView.setItemModel(itemModel);
+            detailPageView.bootstrap();
+            detailPageView.render();
 
-            pageHistory.push(cacheId, detailPageView);
+            this.pageView.$el.hide();
         }
     });
 
-    return ItemListView;
+    var instance;
+    function getInstance() {
+        if (!instance) {
+            instance = new ItemListView();
+        }
+
+        return instance;
+    };
+
+    return {
+        getInstance: getInstance
+    };
 });

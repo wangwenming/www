@@ -114,9 +114,9 @@ function back() {}
           <div class="novel-meta">
             <h3><%- data.name %></h3>
             <dl class="le-dl g-clearfix">
-              <dt>作者：</dt><dd>王文凯</dd>
-              <dt>类型：</dt><dd>科幻</dd>
-              <dt>状态：</dt><dd>连载中</dd>
+              <dt>作者：</dt><dd><%- data.detail.author %></dd>
+              <dt>类型：</dt><dd><%- data.detail.clazz %></dd>
+              <dt>状态：</dt><dd><%= data.detail.status ? '完结' : '连载中' %></dd>
             </dl>
           </div>
         </div>

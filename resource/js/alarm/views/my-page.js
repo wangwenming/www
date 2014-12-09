@@ -4,36 +4,32 @@ define([
     'zepto',
     'deferred',
     'backbone',
-    'page-history',
     'alarm/views/subscription-list',
     'alarm/views/subscribed-list',
     'alarm/views/home-page'
-], function(exports, _, $, deferred, Backbone, pageHistory, SubscriptionListView, SubscribedListView, HomePageView) {
+], function(exports, _, $, deferred, Backbone, SubscriptionListView, SubscribedListView, HomePageView) {
     var MyPageView = Backbone.View.extend({
         el: $('#my-page'),
         elSubscribed: $('#subscribed-list'),
         elSubsription: $('#subscription-list'),
         $loading: $('.loading'),
-        initialize: function(options) {
-            options = options || {};
-
+        initialize: function() {
             this.subscriptionListView = new SubscriptionListView({
-                pageView: this,
-                collection: options.subscriptionCollection
-            });
-            this.SubscribedListView = new SubscribedListView({
                 pageView: this
             });
-            // 初始化数据
-            if (!options.subscriptionCollection) {
-                this.subscriptionListView.bootstrap();
-            }
-
-            this.render();
+            this.subscribedListView = new SubscribedListView({
+                pageView: this
+            });
+        },
+        bootstrap: function() {
+            return this.subscriptionListView.bootstrap();
         },
         render: function() {
+            // 初始化数据
+            this.subscriptionListView.bootstrap();
+
             this.$el.show();
-            this.$loading.hide();
+            // this.$loading.hide();
         },
         events: {
             'click .back': 'navigateToHomePage',
@@ -41,10 +37,11 @@ define([
             'click .subscribed': 'changeToSubscribed'
         },
         navigateToHomePage: function(event) {
-            if (!pageHistory.back()) {
-                this.$loading.show();
-                pageHistory.push('HomePageView', pageHistory.get('HomePageView') || new HomePageView.constructor());
-            }
+            var homePageView = HomePageView.getInstance();
+            homePageView.bootstrap();
+            homePageView.render();
+
+            this.$el.hide();
         },
         changeToSubscription: function(event) {
             $('.active').removeClass('active');
@@ -56,13 +53,18 @@ define([
         changeToSubscribed: function(event) {
             $('.active').removeClass('active');
             $(event.target).closest('li').addClass('active');
-            this.SubscribedListView.bootstrap();
+            this.subscribedListView.bootstrap();
             this.elSubsription.hide();
             this.elSubscribed.show();
         }
     });
 
-    exports.constructor = MyPageView;
+    var instance;
+    exports.getInstance = function() {
+        if (!instance) {
+            instance = new MyPageView();
+        }
 
-    //return MyPageView;
+        return instance;
+    };
 });
