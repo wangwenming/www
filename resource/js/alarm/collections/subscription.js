@@ -8,6 +8,8 @@ define([
 ], function(_, $, deferred, Backbone, config, ItemModel) {
     var SubscriptionCollection = Backbone.Collection.extend({
         model: ItemModel,
+        cacheKey: 'collections/subscription',
+        cacheTTL: 10,
         url: function () {
             return config.url('/remind/getMyRemind');
         },

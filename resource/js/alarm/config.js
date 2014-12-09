@@ -12,7 +12,6 @@ define([
         USRE_ID = +new Date;
         localStorage.setItem('uid', USRE_ID);
     }
-    console.log('uid=' + USRE_ID);
 
     var config = {
         url: function(path, params) {
