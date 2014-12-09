@@ -193,7 +193,7 @@ function back() {}
                       <td class="subscribed-time"><div class="subscribed-date">提醒时间</div></td>
                       <td class="subscribed-content"><div class="subscribed-detail">内容</div></td>
                     </tr>
-                  <% for (var i = 0, len = 2, item, uplist; i < len; i++) {
+                  <% for (var i = 0, len = subscribedCollection.length, item, uplist; i < len; i++) {
                        item = subscribedCollection.at(i).attributes;
                   %>
                     <tr>
