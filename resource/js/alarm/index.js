@@ -21,4 +21,8 @@ require([
             pageHistory.push('HomePageView', homePageView);
         }
     });
+
+    window.back = function() {
+        pageHistory.back();
+    }
 });
