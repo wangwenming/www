@@ -9,6 +9,7 @@ define([
     var categoryListTpl = $('#tpl-cat-item').html();
     var CategoryListView = Backbone.View.extend({
         el: $('#index-cat-list'),
+        $loading: $('.loading'),
         initialize: function(options) {
             this.collection = new CategoryCollection();
         },
@@ -32,6 +33,7 @@ define([
                     categoryCollection: this.collection
                 });
             this.$el.html(html);
+            this.$loading.hide();
         },
         events: {
             'click .cat-item': 'navigateToItemListPage'
@@ -40,6 +42,7 @@ define([
             var id = $(event.target).closest('.list-item').data('id'),
                 itemListPageView = new ItemListPageView.getInstance();
 
+            this.$loading.show();
             itemListPageView.setCategoryModel(this.collection.get(id));
             itemListPageView.bootstrap();
             itemListPageView.render();

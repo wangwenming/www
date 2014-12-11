@@ -14,7 +14,7 @@ define([
             this.alarmCollection = new AlarmCollection();
         },
         parse: function(response) {
-            if (response.error != 0) {
+            if (response.error !== 0) {
                 return [];
             }
 

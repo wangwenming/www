@@ -1,4 +1,5 @@
 define([
+    'exports',
     'underscore',
     'zepto',
     'deferred',
@@ -6,23 +7,25 @@ define([
     'alarm/collections/subscription',
     'alarm/views/my-page',
     'alarm/tool'
-], function(_, $, deferred, Backbone, SubscriptionCollection, MyPageView, tool) {
+], function(exports, _, $, deferred, Backbone, SubscriptionCollection, MyPageView, tool) {
     var subscriptionListTpl = _.template($('#tpl-subscription-item').html());
 
     var SubscriptionListView = Backbone.View.extend({
         el: $('#subscription-list'),
         id: null,
         $dialog: null,
+        $loading: $('.loading'),
         initialize: function(options) {
             var self = this;
 
             this.collection = new SubscriptionCollection();
-            this.pageView = options.pageView;
-
             // 函数的this是collection
             this.collection.on('remove', function() {
                 self.render();
             });
+        },
+        setPageView: function(pageView) {
+            this.pageView = pageView;
         },
         bootstrap: function() {
             var self = this,
@@ -42,6 +45,7 @@ define([
                 });
             this.$el.html(html);
             this.$dialog = $('.dialog, .mask', this.$el);
+            this.$loading.hide();
         },
         events: {
             'click .subscription-action': 'cancelAlarm',
@@ -63,5 +67,12 @@ define([
         }
     });
 
-    return SubscriptionListView;
+    var instance;
+    exports.getInstance = function() {
+        if (!instance) {
+            instance = new SubscriptionListView();
+        }
+
+        return instance;
+    };
 });

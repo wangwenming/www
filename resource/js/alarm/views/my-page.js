@@ -14,9 +14,8 @@ define([
         elSubsription: $('#subscription-list'),
         $loading: $('.loading'),
         initialize: function() {
-            this.subscriptionListView = new SubscriptionListView({
-                pageView: this
-            });
+            this.subscriptionListView = new SubscriptionListView.getInstance();
+            this.subscriptionListView.setPageView(this);
             this.subscribedListView = new SubscribedListView({
                 pageView: this
             });
@@ -26,8 +25,6 @@ define([
         },
         render: function() {
             // 初始化数据
-            this.subscriptionListView.bootstrap();
-
             this.$el.show();
             this.$loading.hide();
         },

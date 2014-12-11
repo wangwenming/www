@@ -4,11 +4,23 @@ define([
     'deferred',
     'backbone',
     'alarm/config',
-    'alarm/models/item'
+    'alarm/models/item',
 ], function(_, $, deferred, Backbone, config, ItemModel) {
     var ItemCollection = Backbone.Collection.extend({
         model: ItemModel,
         cacheTTL: 1800,
+        initialize: function() {
+            this.on('change', function() {
+                var self = this,
+                    obj = localStorage.getItem(this.cacheKey);
+                if (obj) {
+                    obj = JSON.parse(obj);
+                    obj.time = +new Date;
+                    obj.data.data = self.toJSON();
+                    localStorage.setItem(this.cacheKey, JSON.stringify(obj));
+                }
+            });
+        },
         url: function() {
             return config.url('/remind/getTypeDatalist', {
                 typeId: this.categoryModel.get('id'),

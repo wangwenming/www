@@ -12,6 +12,7 @@ define([
         el: $('#item-list'),
         id: null,
         $dialog: null,
+        $loading: $('.loading'),
         initialize: function(options) {
             var self = this;
 
@@ -48,6 +49,7 @@ define([
             this.$el.html(html);
             // 弹泡的根节点缓存
             this.$dialog = $('.dialog, .mask', this.$el);
+            this.$loading.hide();
         },
         // 有先后顺序
         events: {

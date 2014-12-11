@@ -5,10 +5,11 @@ define([
     'deferred',
     'backbone',
     'alarm/models/detail',
+    'alarm/models/item',
     'alarm/views/poster',
     'alarm/views/alarm-list',
     'alarm/views/item-list-page'
-], function(exports, _, $, deferred, Backbone, DetailModel, PosterView, AlarmListView, ItemListPageView) {
+], function(exports, _, $, deferred, Backbone, DetailModel, ItemModel, PosterView, AlarmListView, ItemListPageView) {
     var DetailPageView = Backbone.View.extend({
         el: $('#page-detail'),
         setItemModel: function(itemModel) {
@@ -43,7 +44,8 @@ define([
             });
         },
         events: {
-            'click .back': 'back'
+            'click .back': 'back',
+            'click .poster-action': 'posterAction'
         },
         back: function(event) {
             var itemListPageView = new ItemListPageView.getInstance();
@@ -52,6 +54,10 @@ define([
             itemListPageView.render();
 
             this.$el.hide();
+        },
+        posterAction: function() {
+            model = this.itemModel;
+            model.save({isRemind: model.get('isRemind') ? 0 : 1});
         }
     });
 
