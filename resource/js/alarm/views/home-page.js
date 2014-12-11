@@ -18,7 +18,7 @@ define([
             return this.categoryListView.bootstrap();
         },
         render: function() {
-            this.$el.show();
+            this.$el.addClass('active');
             this.$loading.hide();
         },
         events: {
@@ -29,7 +29,7 @@ define([
             myPageView.bootstrap();
             myPageView.render();
 
-            this.$el.hide();
+            this.$el.removeClass('active');
         }
     });
 

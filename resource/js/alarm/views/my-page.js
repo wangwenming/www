@@ -25,7 +25,7 @@ define([
         },
         render: function() {
             // 初始化数据
-            this.$el.show();
+            this.$el.addClass('active');
             this.$loading.hide();
         },
         events: {
@@ -38,7 +38,7 @@ define([
             homePageView.bootstrap();
             homePageView.render();
 
-            this.$el.hide();
+            this.$el.removeClass('active');
         },
         changeToSubscription: function(event) {
             $('.active').removeClass('active');

@@ -3,11 +3,10 @@ require([
     'zepto',
     'deferred',
     'backbone',
-    'page-history',
     'alarm/views/home-page',
     'alarm/views/my-page',
     'alarm/collections/subscription'
-], function(_, $, deferred, Backbone, pageHistory, HomePageView, MyPageView, SubscriptionCollection) {
+], function(_, $, deferred, Backbone, HomePageView, MyPageView, SubscriptionCollection) {
 
     var sync = Backbone.sync;
     Backbone.sync = function(method, model, options) {
@@ -82,7 +81,10 @@ require([
     });
 
     window.back = function() {
-        alert('onBackPressed');
-        pageHistory.back();
+        // 不管初始显示是 我的提醒、还是分类首页，返回的最后页面都是 分类首页
+        var $back = $('.page.active .js-back');
+        $back.click();
+
+        return $back.length > 0;
     };
 });

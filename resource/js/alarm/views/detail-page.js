@@ -30,7 +30,7 @@ define([
             return deferred;
         },
         render: function() {
-            this.$el.show();
+            this.$el.addClass('active');
         },
         renderContent: function() {
             // 渲染详情部分
@@ -53,7 +53,7 @@ define([
             itemListPageView.bootstrap();
             itemListPageView.render();
 
-            this.$el.hide();
+            this.$el.removeClass('active');
         },
         posterAction: function() {
             model = this.itemModel;
