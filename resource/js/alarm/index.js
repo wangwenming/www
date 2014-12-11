@@ -82,6 +82,7 @@ require([
     });
 
     window.back = function() {
+        alert('onBackPressed');
         pageHistory.back();
     };
 });
