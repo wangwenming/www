@@ -21,7 +21,7 @@ define([
             return this.itemListView.bootstrap();
         },
         render: function() {
-            this.$el.show();
+            this.$el.addClass('active');
             this.$el.find('.hd h2').text(this.categoryModel.get('name'));
         },
         events: {
@@ -32,7 +32,7 @@ define([
             homePageView.bootstrap();
             homePageView.render();
 
-            this.$el.hide();
+            this.$el.removeClass('active');
         }
     });
 

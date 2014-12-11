@@ -34,6 +34,7 @@ define([
             this.$el.find('.hd h2').text(this.itemModel.get('name'));
             this.$el.show();
             this.$dialog = $('.dialog, .mask', this.$el);
+            this.$el.addClass('active');
         },
         renderContent: function() {
             // 渲染详情部分
@@ -59,7 +60,7 @@ define([
             itemListPageView.bootstrap();
             itemListPageView.render();
 
-            this.$el.hide();
+            this.$el.removeClass('active');
         },
         subscribe: function() {
             var self = this;

@@ -97,7 +97,7 @@ define([
             detailPageView.bootstrap();
             detailPageView.render();
 
-            this.pageView.$el.hide();
+            this.pageView.$el.removeClass('active');
         }
     });
 

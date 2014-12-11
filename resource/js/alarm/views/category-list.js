@@ -47,7 +47,7 @@ define([
             itemListPageView.bootstrap();
             itemListPageView.render();
 
-            this.pageView.$el.hide();
+            this.pageView.$el.removeClass('active');
         }
     });
 

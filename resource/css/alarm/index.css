@@ -18,6 +18,9 @@ td tr {
 .page {
     display: none;
 }
+.page.active {
+    display: block;
+}
 
 .hd {
     position: relative;
