@@ -51,7 +51,8 @@ define([
             'click .subscribe': 'subscribe',
             'click .cancel': 'cancel',
             'click .delete-yes': 'cancelYes',
-            'click .delete-no': 'cancelNo'
+            'click .delete-no': 'cancelNo',
+            'click #alarm-list .list-item': 'alarmAction'
         },
         back: function(event) {
             var itemListPageView = new ItemListPageView.getInstance();
@@ -86,6 +87,10 @@ define([
         },
         cancelNo: function() {
             this.$dialog.hide();
+        },
+        alarmAction: function(event) {
+            var url = $(event.target).closest('li').data('url');
+            location.href = url;
         }
     });
 
