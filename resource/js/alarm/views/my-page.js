@@ -25,7 +25,7 @@ define([
         },
         render: function() {
             // 初始化数据
-            this.$el.addClass('active');
+            this.$el.show();
             this.$loading.hide();
         },
         events: {
@@ -38,17 +38,17 @@ define([
             homePageView.bootstrap();
             homePageView.render();
 
-            this.$el.removeClass('active');
+            this.$el.hide();
         },
         changeToSubscription: function(event) {
-            $('.active').removeClass('active');
+            $('.active', this.$el).removeClass('active');
             $(event.target).closest('li').addClass('active');
             this.subscriptionListView.bootstrap();
             this.elSubsription.show();
             this.elSubscribed.hide();
         },
         changeToSubscribed: function(event) {
-            $('.active').removeClass('active');
+            $('.active', this.$el).removeClass('active');
             $(event.target).closest('li').addClass('active');
             this.subscribedListView.bootstrap();
             this.elSubsription.hide();
