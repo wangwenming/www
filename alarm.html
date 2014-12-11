@@ -82,7 +82,7 @@ function back() {}
       <!-- 列表 End -->
     </div>
     <div class="ft"></div>
-    <div class="cancelSubscribeSuccess">
+    <div class="subscribeSuccess">
         订阅成功
     </div>
   </div>
@@ -121,7 +121,11 @@ function back() {}
           </div>
         </div>
         <p class="poster-desc">简介 : <%- data.title %></p>
-        <div class="poster-action">+</div>
+        <% if(data.isRemind){ %>
+          <div class="poster-action cancel">退订</div>
+        <% } else{ %>
+          <div class="poster-action subscribe">订阅</div>
+        <% } %>
         </script>
       </div>
       <!-- 小说详情 End -->
@@ -141,9 +145,21 @@ function back() {}
       <% } %>
       </script>
       </ul>
+      <div class="dialog">
+        <h3>确定要取消订阅吗？</h3>
+        <div class="confirm">
+          <span class="delete-yes">是</span>
+          <span class="delete-no">否</span>
+        </div>
+      </div>
+      <div class="mask">
+      </div>
       <!-- 列表 End -->
     </div>
     <div class="ft"></div>
+    <div class="subscribeSuccess">
+        订阅成功
+    </div>
   </div>
   <!-- 详情页 End -->
 

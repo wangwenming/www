@@ -77,9 +77,9 @@ define([
             model = this.collection.get(id);
             $.when(model.save({isRemind: model.get('isRemind') ? 0 : 1})).done(function() {
                 // 订阅成功tips淡入淡出效果
-                $('.cancelSubscribeSuccess').removeClass('tipsHide').addClass('tipsShow');
+                $('.subscribeSuccess').removeClass('tipsHide').addClass('tipsShow');
                 setTimeout(function(){
-                    $('.cancelSubscribeSuccess').removeClass('tipsShow').addClass('tipsHide');
+                    $('.subscribeSuccess').removeClass('tipsShow').addClass('tipsHide');
                 }, 1000);
             });
         },

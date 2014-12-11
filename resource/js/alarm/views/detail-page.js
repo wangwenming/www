@@ -5,16 +5,17 @@ define([
     'deferred',
     'backbone',
     'alarm/models/detail',
-    'alarm/models/item',
     'alarm/views/poster',
     'alarm/views/alarm-list',
     'alarm/views/item-list-page'
-], function(exports, _, $, deferred, Backbone, DetailModel, ItemModel, PosterView, AlarmListView, ItemListPageView) {
+], function(exports, _, $, deferred, Backbone, DetailModel, PosterView, AlarmListView, ItemListPageView) {
     var DetailPageView = Backbone.View.extend({
         el: $('#page-detail'),
+        $dialog: null,
         setItemModel: function(itemModel) {
-            this.itemModel = itemModel;
-            this.detailModel = new DetailModel({
+            var self = this;
+            self.itemModel = itemModel;
+            self.detailModel = new DetailModel({
                 itemModel: itemModel
             });
         },
@@ -30,7 +31,9 @@ define([
             return deferred;
         },
         render: function() {
+            this.$el.find('.hd h2').text(this.itemModel.get('name'));
             this.$el.show();
+            this.$dialog = $('.dialog, .mask', this.$el);
         },
         renderContent: function() {
             // 渲染详情部分
@@ -45,7 +48,10 @@ define([
         },
         events: {
             'click .back': 'back',
-            'click .poster-action': 'posterAction'
+            'click .subscribe': 'subscribe',
+            'click .cancel': 'cancel',
+            'click .delete-yes': 'cancelYes',
+            'click .delete-no': 'cancelNo'
         },
         back: function(event) {
             var itemListPageView = new ItemListPageView.getInstance();
@@ -55,9 +61,31 @@ define([
 
             this.$el.hide();
         },
-        posterAction: function() {
+        subscribe: function() {
+            var self = this;
+            model = this.itemModel;
+            $.when(model.save({isRemind: model.get('isRemind') ? 0 : 1})).done(function() {
+                // 订阅成功tips淡入淡出效果
+                $('.subscribeSuccess').removeClass('tipsHide').addClass('tipsShow');
+                setTimeout(function(){
+                    $('.subscribeSuccess').removeClass('tipsShow').addClass('tipsHide');
+                }, 1000);
+                // 重新渲染一次
+                self.bootstrap();
+            });
+        },
+        cancel: function() {
+            this.$dialog.show();
+        },
+        cancelYes: function() {
             model = this.itemModel;
             model.save({isRemind: model.get('isRemind') ? 0 : 1});
+            this.$dialog.hide();
+            // 重新渲染一次
+            this.bootstrap();
+        },
+        cancelNo: function() {
+            this.$dialog.hide();
         }
     });
 
