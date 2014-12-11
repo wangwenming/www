@@ -32,7 +32,6 @@ define([
         },
         render: function() {
             this.$el.find('.hd h2').text(this.itemModel.get('name'));
-            this.$el.show();
             this.$dialog = $('.dialog, .mask', this.$el);
             this.$el.addClass('active');
         },
