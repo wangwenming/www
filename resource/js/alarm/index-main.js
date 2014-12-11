@@ -26,4 +26,4 @@ require.config({
     }
 });
 
-require(['alarm/index']);
+require(['alarm/index','alarm/Router/alarmRouter']);

@@ -21,6 +21,10 @@ define([
             return this.itemListView.bootstrap();
         },
         render: function() {
+            var hash = location.hash;
+            if (!/#item/g.test(hash)) {
+                location.hash = '#item';
+            }
             this.$el.addClass('active');
             this.$el.find('.hd h2').text(this.categoryModel.get('name'));
         },

@@ -31,6 +31,10 @@ define([
             return deferred;
         },
         render: function() {
+            var hash = location.hash;
+            if (!/#detail/g.test(hash)) {
+                location.hash = '#detail';
+            }
             this.$el.find('.hd h2').text(this.itemModel.get('name'));
             this.$dialog = $('.dialog, .mask', this.$el);
             this.$el.addClass('active');

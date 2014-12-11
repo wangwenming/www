@@ -31,9 +31,14 @@ define([
             var compiled = _.template(categoryListTpl),
                 html = compiled({
                     categoryCollection: this.collection
-                });
+                }),
+                hash = location.hash;
             this.$el.html(html);
             this.$loading.hide();
+
+            if (!/#category/g.test(hash)) {
+                location.hash = '#category';
+            }
         },
         events: {
             'click .cat-item': 'navigateToItemListPage'
