@@ -402,7 +402,7 @@ td tr {
     height: 40px;
     background-color: #EFEFEF;
 }
-.dialog .confirm .delete-yes{
+.dialog .confirm .delete-yes, .dialog .confirm .change-yes{
     background-color: #F9F9F9;
     border-right: 1px solid #e8e8e8;
 }
