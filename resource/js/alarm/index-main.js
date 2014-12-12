@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: '/resource/js',
+    baseUrl: 'resource/js',
     paths: {
         underscore: 'lib/underscore',
         zepto: 'lib/zepto',
