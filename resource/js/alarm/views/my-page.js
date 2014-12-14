@@ -31,7 +31,6 @@ define([
             // 初始化数据
             this.$el.addClass('active');
             this.$loading.hide();
-            localStorage.setItem('historyBool', '');
             History.pushState({name: 'page'}, '');
         },
         events: {
