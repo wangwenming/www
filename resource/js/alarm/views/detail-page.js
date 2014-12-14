@@ -31,13 +31,14 @@ define([
             return deferred;
         },
         render: function() {
-            var hash = location.hash;
+            /*var hash = location.hash;
             if (!/#detail/g.test(hash)) {
-                location.hash = '#detail';
-            }
+                location.hash = '#detail?id=' + this.itemModel.id;
+            }*/
             this.$el.find('.hd h2').text(this.itemModel.get('name'));
             this.$dialog = $('.dialog, .mask', this.$el);
             this.$el.addClass('active');
+            History.pushState({name: 'detail'}, '');
         },
         renderContent: function() {
             // 渲染详情部分
@@ -60,7 +61,8 @@ define([
         },
         back: function(event) {
             var itemListPageView = new ItemListPageView.getInstance();
-
+            // 记录下是点击的back按钮，与返回键区别开
+            localStorage.setItem('historyBool',  true);
             itemListPageView.bootstrap();
             itemListPageView.render();
 
@@ -94,7 +96,7 @@ define([
         },
         alarmAction: function(event) {
             var url = $(event.target).closest('li').data('url');
-            location.href = url;
+            location.href = url /*+ '#thirdUrl'*/;
         }
     });
 

@@ -19,12 +19,10 @@ define([
         bootstrap: function() {
             var self = this,
                 deferred = $.Deferred();
-
             $.when(this.collection.fetch()).done(function() {
                 deferred.resolve();
                 self.render();
             });
-
             return deferred;
         },
         render: function() {
@@ -35,10 +33,11 @@ define([
                 hash = location.hash;
             this.$el.html(html);
             this.$loading.hide();
-
-            if (!/#category/g.test(hash)) {
+            History.pushState({name: 'category'}, '');
+            /*if (!/#category/g.test(hash)) {
                 location.hash = '#category';
-            }
+            }*/
+            // History.pushState({name: 'category'}, '');
         },
         events: {
             'click .cat-item': 'navigateToItemListPage'
@@ -63,7 +62,7 @@ define([
         }
 
         return instance;
-    };
+    }
 
     return {
         getInstance: getInstance

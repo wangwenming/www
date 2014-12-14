@@ -3,10 +3,11 @@ require([
     'zepto',
     'deferred',
     'backbone',
+    'zeptoHistory',
     'alarm/views/home-page',
     'alarm/views/my-page',
     'alarm/collections/subscription'
-], function(_, $, deferred, Backbone, HomePageView, MyPageView, SubscriptionCollection) {
+], function(_, $, deferred, Backbone, zeptoHistory, HomePageView, MyPageView, SubscriptionCollection) {
 
     var sync = Backbone.sync;
     Backbone.sync = function(method, model, options) {
@@ -80,11 +81,28 @@ require([
         homePageView.render();
     });
 
-    window.back = function() {
-        // 不管初始显示是 我的提醒、还是分类首页，返回的最后页面都是 分类首页
-        var $back = $('.page.active .js-back');
-        $back.click();
-
-        return $back.length > 0;
-    };
+    History.Adapter.bind(window,'statechange',function() {
+        var State = History.getState(),
+            id = $('.page.active').attr('id'),
+            name = State.data.name;
+            // 如果当前页是主页则返回
+            if (id == 'page-home') {
+                return;
+            }
+            if (name === 'category') {
+                if (id === 'my-page') {
+                    $('#my-page .back').click();
+                } else if (id === 'page-item-list') {
+                    $('#page-item-list .back').click();
+                }
+            } else if (name === 'item') {
+                if (id == 'page-detail') {
+                    $('#page-detail .back').click();
+                } else {
+                   History.pushState({name: 'category'}, '');
+                }
+            } else {
+                return;
+            }
+    });
 });

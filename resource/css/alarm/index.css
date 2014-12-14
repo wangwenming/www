@@ -53,7 +53,9 @@ td tr {
     background-image: url(/resource/img/alarm/ico-me.png);
 }
 .hd .back , .hd .home {
-    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 40px;
     height: 40px;
 }
@@ -484,7 +486,7 @@ text-overflow: ellipsis;
 
 .loading {
     position: absolute;
-    background: url(http://p1.qhimg.com/d/inn/619d4aab/ajax-loading.gif);
+    background: url(/resource/img/alarm/ajax-loading.gif);
     background-size: 100%;
     width: 100px;
     height: 100px;

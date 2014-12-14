@@ -24,13 +24,15 @@ define([
             return this.subscriptionListView.bootstrap();
         },
         render: function() {
-            var hash = location.hash;
+            /*var hash = location.hash;
             if (!/#page/g.test(hash)) {
                 location.hash = '#page';
-            }
+            }*/
             // 初始化数据
-            this.$el.show();
+            this.$el.addClass('active');
             this.$loading.hide();
+            localStorage.setItem('historyBool', '');
+            History.pushState({name: 'page'}, '');
         },
         events: {
             'click .back': 'navigateToHomePage',
@@ -42,7 +44,7 @@ define([
             homePageView.bootstrap();
             homePageView.render();
 
-            this.$el.hide();
+            this.$el.removeClass('active');
         },
         changeToSubscription: function(event) {
             $('.active', this.$el).removeClass('active');

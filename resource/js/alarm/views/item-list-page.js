@@ -21,12 +21,18 @@ define([
             return this.itemListView.bootstrap();
         },
         render: function() {
-            var hash = location.hash;
+            /*var hash = location.hash;
             if (!/#item/g.test(hash)) {
-                location.hash = '#item';
-            }
+                location.hash = '#item?id=' + this.categoryModel.id;
+            }*/
             this.$el.addClass('active');
             this.$el.find('.hd h2').text(this.categoryModel.get('name'));
+            // 点back按钮的时候不再触发状态变化
+            if (localStorage.getItem('historyBool')) {
+                localStorage.setItem('historyBool',  '');
+                return;
+            }
+            History.pushState({name: 'item'}, '');
         },
         events: {
             'click .back': 'back'
