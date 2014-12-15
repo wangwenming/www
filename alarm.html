@@ -167,7 +167,7 @@ function back() {}
   <div id="my-page" class="page">
     <div class="hd">
          <a href="javascript:void(0)" class="back js-back"><span class="btn"></span></a>
-        <h2>我的提醒</h2>
+        <h2>个人中心</h2>
     </div>
     <div class="bd">
 
@@ -189,7 +189,8 @@ function back() {}
                     <h3 class="subscription-time"><%- tool.timeFormat(uplist.timestamp) %></h3>
                     <div class="list-icon subscription-img"><img src="<%= item.coverImg %>"></div>
                     <a href="javascript:void(0)" class="list-action subscription-action">退订</a>
-                    <h3 class="subscription-title"><%- uplist.content %></h3>
+                    <h3 class="subscription-title"><%- item.name %></h3>
+                    <p class="subscription-desc"><%- uplist.content %></p>
                   </li>
                 <% } %>
                 </ul>
@@ -217,7 +218,7 @@ function back() {}
                   %>
                     <tr>
                       <td class="subscribed-time"><div class="subscribed-date"><%- tool.timeFormat(item.time)%></div></td>
-                      <td class="subscribed-content"><div class="subscribed-detail"><%- item.content%></div></td>
+                      <td class="subscribed-content" data-url="<%- item.readurl %>"><div class="subscribed-detail"><%- item.content%></div></td>
                     </tr>
                   <% } %>
                  </table>

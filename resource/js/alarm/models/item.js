@@ -27,6 +27,7 @@ define([
                         error: options.error
                     });
 
+                    // 清除我的订阅和详情页的缓存
                     localStorage.removeItem('collections/subscription');
                     localStorage.removeItem('model/detail_' + model.get('id'));
                     break;
@@ -42,6 +43,7 @@ define([
                         error: options.error
                     });
 
+                    // 清除我的订阅、列表页和详情页的缓存
                     localStorage.removeItem('collections/subscription');
                     localStorage.removeItem('collections/item_' + model.get('typeId'));
                     localStorage.removeItem('model/detail_' + model.get('id'));

@@ -162,11 +162,13 @@ td tr {
     line-height: 22px;
 }
 /* 提醒项补充说明文字 */
-.item-desc {
-    margin: 0 66px 0 104px;
+.item-desc , .subscription-desc{
     font-size: 12px;
     line-height: 20px;
     color: #666;
+}
+.item-desc {
+    margin: 0 66px 0 104px;
 }
 /* 提醒项右侧操作 */
 .item-action, .item-action-cancel, .subscription-action {

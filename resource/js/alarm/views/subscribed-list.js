@@ -39,6 +39,13 @@ define([
             this.$el.html(html);
             height = this.$el.height(); // 计算subscribed-list高度，设置subscribed-line的高度，10为subscribed-list距离底部的padding
             $('.subscribed-line').css({height: height});
+        },
+        events: {
+            'click .subscribed-content': 'subscribedContent'
+        },
+        subscribedContent: function() {
+            var url = $(event.target).closest('tr').data('url');
+            location.href = url;
         }
     });
 
