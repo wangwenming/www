@@ -28,6 +28,7 @@ define([
                     });
 
                     localStorage.removeItem('collections/subscription');
+                    localStorage.removeItem('model/detail_' + model.get('id'));
                     break;
                 case 'delete':
                     model.collection.remove(model);
@@ -43,6 +44,7 @@ define([
 
                     localStorage.removeItem('collections/subscription');
                     localStorage.removeItem('collections/item_' + model.get('typeId'));
+                    localStorage.removeItem('model/detail_' + model.get('id'));
                     break;
                 default:
                     break;

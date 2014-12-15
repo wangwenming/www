@@ -13,7 +13,7 @@ define([
         initialize: function(options) {
             this.itemModel = options.itemModel;
             this.alarmCollection = new AlarmCollection();
-           /* this.cacheKey = 'model/detail_' + this.itemModel.get('id');*/
+            this.cacheKey = 'model/detail_' + this.itemModel.get('id');
         },
         parse: function(response) {
             if (response.error !== 0) {
@@ -21,7 +21,7 @@ define([
             }
 
             this.alarmCollection.set(response.data.uplist);
-            response.data.uplist = null;
+            // response.data.uplist = null;  要缓存，所以注释掉
 
             return response.data;
         }
