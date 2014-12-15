@@ -184,7 +184,7 @@ function back() {}
                      item = subscriptionCollection.at(i).attributes;
                      uplist = item.uplist[0];
                 %>
-                  <li class="list-item subscription-item" data-url="<%- item.readurl %>" data-id="<%- item.id %>">
+                  <li class="list-item subscription-item" data-url="<%- uplist.readurl %>" data-id="<%- item.id %>">
                     <div class="list-icon subscription-icon"></div>
                     <h3 class="subscription-time"><%- tool.timeFormat(uplist.timestamp) %></h3>
                     <div class="list-icon subscription-img"><img src="<%= item.coverImg %>"></div>

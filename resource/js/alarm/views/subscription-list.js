@@ -48,6 +48,7 @@ define([
             this.$loading.hide();
         },
         events: {
+            'click .subscription-item': 'subscriptionItem',
             'click .subscription-action': 'cancelAlarm',
             'click .delete-yes': 'cancelYes',
             'click .delete-no': 'cancelNo'
@@ -58,12 +59,20 @@ define([
         },
         cancelYes: function() {
             model = this.collection.get(this.id);
-            // model.save({isRemind: model.get('isRemind') ? 0 : 1});
             model.destroy();
             this.$dialog.hide();
         },
         cancelNo: function() {
             this.$dialog.hide();
+        },
+        // 点击item项到详情页
+        subscriptionItem: function() {
+            // Backbone事件无法阻止冒泡
+            if ($(event.target).is('.subscription-action')) {
+                return;
+            }
+            var url = $(event.target).closest('li').data('url');
+            location.href = url;
         }
     });
 

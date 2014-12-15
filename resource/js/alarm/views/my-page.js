@@ -24,10 +24,6 @@ define([
             return this.subscriptionListView.bootstrap();
         },
         render: function() {
-            /*var hash = location.hash;
-            if (!/#page/g.test(hash)) {
-                location.hash = '#page';
-            }*/
             // 初始化数据
             this.$el.addClass('active');
             this.$loading.hide();

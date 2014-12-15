@@ -4,8 +4,9 @@ define([
     'deferred',
     'backbone',
     'alarm/collections/item',
-    'alarm/views/detail-page'
-], function(_, $, deferred, Backbone, ItemCollection, DetailPageView) {
+    'alarm/views/detail-page',
+    'alarm/tool'
+], function(_, $, deferred, Backbone, ItemCollection, DetailPageView, tool) {
     var itemListTpl = _.template($('#tpl-item-item').html());
 
     var ItemListView = Backbone.View.extend({
@@ -50,6 +51,7 @@ define([
             // 弹泡的根节点缓存
             this.$dialog = $('.dialog, .mask', this.$el);
             this.$loading.hide();
+            tool.setTouchStyle('.item-item', 'highlight');
         },
         // 有先后顺序
         events: {

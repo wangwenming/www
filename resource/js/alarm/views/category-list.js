@@ -4,8 +4,9 @@ define([
     'deferred',
     'backbone',
     'alarm/collections/category',
-    'alarm/views/item-list-page'
-], function(_, $, deferred, Backbone, CategoryCollection, ItemListPageView) {
+    'alarm/views/item-list-page',
+    'alarm/tool'
+], function(_, $, deferred, Backbone, CategoryCollection, ItemListPageView, tool) {
     var categoryListTpl = $('#tpl-cat-item').html();
     var CategoryListView = Backbone.View.extend({
         el: $('#index-cat-list'),
@@ -34,10 +35,7 @@ define([
             this.$el.html(html);
             this.$loading.hide();
             History.pushState({name: 'category'}, '');
-            /*if (!/#category/g.test(hash)) {
-                location.hash = '#category';
-            }*/
-            // History.pushState({name: 'category'}, '');
+            tool.setTouchStyle('.cat-item', 'highlight');
         },
         events: {
             'click .cat-item': 'navigateToItemListPage'

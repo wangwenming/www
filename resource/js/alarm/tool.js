@@ -41,7 +41,20 @@ define([
         return rt.join('-') + ' ' + [p(d.getHours()), p(d.getMinutes())].join(':');
     }
 
+    // 点击高亮效果添加
+    function setTouchStyle(selector, highlight) {
+        highlight = highlight || 'highlight';
+        var doc = $(document);
+        doc.on('touchstart', selector, function (e) {
+            $(this).addClass(highlight);
+        });
+        doc.on('touchmove touchend', selector, function (e) {
+            $(this).removeClass(highlight);
+        });
+    }
+
     return {
-        timeFormat: timeFormat
+        timeFormat: timeFormat,
+        setTouchStyle: setTouchStyle
     };
 });

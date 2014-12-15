@@ -7,8 +7,9 @@ define([
     'alarm/models/detail',
     'alarm/views/poster',
     'alarm/views/alarm-list',
-    'alarm/views/item-list-page'
-], function(exports, _, $, deferred, Backbone, DetailModel, PosterView, AlarmListView, ItemListPageView) {
+    'alarm/views/item-list-page',
+    'alarm/tool'
+], function(exports, _, $, deferred, Backbone, DetailModel, PosterView, AlarmListView, ItemListPageView, tool) {
     var DetailPageView = Backbone.View.extend({
         el: $('#page-detail'),
         $dialog: null,
@@ -31,14 +32,11 @@ define([
             return deferred;
         },
         render: function() {
-            /*var hash = location.hash;
-            if (!/#detail/g.test(hash)) {
-                location.hash = '#detail?id=' + this.itemModel.id;
-            }*/
             this.$el.find('.hd h2').text(this.itemModel.get('name'));
             this.$dialog = $('.dialog, .mask', this.$el);
             this.$el.addClass('active');
             History.pushState({name: 'detail'}, '');
+            tool.setTouchStyle('.subscribe', 'highlight');
         },
         renderContent: function() {
             // 渲染详情部分
@@ -84,11 +82,11 @@ define([
         cancel: function() {
             this.$dialog.show();
         },
+        // 确认取消订阅
         cancelYes: function() {
             model = this.itemModel;
             model.save({isRemind: model.get('isRemind') ? 0 : 1});
             this.$dialog.hide();
-            // 重新渲染一次
             this.bootstrap();
         },
         cancelNo: function() {
@@ -96,7 +94,7 @@ define([
         },
         alarmAction: function(event) {
             var url = $(event.target).closest('li').data('url');
-            location.href = url /*+ '#thirdUrl'*/;
+            location.href = url;
         }
     });
 

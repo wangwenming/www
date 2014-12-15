@@ -100,6 +100,7 @@ td tr {
 /* 分类项 */
 .cat-item {
     height: 60px;
+    padding-top: 10px;
 }
 /* 分类项左侧图标 */
 .cat-icon {
@@ -114,7 +115,7 @@ td tr {
 }
 /* 分类项标题 */
 .cat-title {
-    margin: 10px 48px 0 55px;
+    margin: 0px 48px 0 55px;
     font-size: 14px;
     color: #333;
     line-height: 22px;
@@ -136,7 +137,9 @@ td tr {
 
 /* 提醒项 */
 .item-item {
-    height: 78px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    overflow: hidden;
 }
 .item-item:first-child {
     border-top: none;
@@ -153,7 +156,7 @@ td tr {
 }
 /* 提醒项标题 */
 .item-title {
-    margin: 10px 66px 0 104px;
+    margin: 0px 66px 0 104px;
     font-size: 14px;
     color: #333;
     line-height: 22px;
@@ -217,11 +220,12 @@ td tr {
 */
 
 .alarm-item{
-    height: 66px;
+    padding-bottom: 10px;
+    position: relative;
 }
 .alarm-icon, .subscription-icon{
+    position: absolute;
     border-right: 2px solid #eaeaea;
-    position: relative;
     width: 11px;
     height: 100%;
 }
@@ -248,6 +252,9 @@ td tr {
     line-height: 22px;
     margin-top: 4px;
     margin-left: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .alarm-action {
     width: 48px;
@@ -263,9 +270,6 @@ td tr {
     cursor: pointer;
 }
 
-.alarm-item:first-child {
-    height: 82px;
-}
 .alarm-item:first-child .alarm-icon::before {
     top: 30px;
 }
@@ -315,7 +319,9 @@ td tr {
     color: #55BE20;
 }
 .subscription-item {
-    height: 92px;
+    padding-bottom: 12px;
+    overflow: hidden;
+    position: relative;
 }
 .subscription-img, .subscription-img img {
     width: 44px;
@@ -323,9 +329,11 @@ td tr {
     border-radius: 22px;
 }
 .subscription-img {
+    margin-left: 22px;
     margin-right: 10px;
 }
 .subscription-time {
+   margin-left: 22px;
    color: #b6b6b6;
    padding-top: 10px;
 }
@@ -501,7 +509,7 @@ text-overflow: ellipsis;
     top: 50%;
     left: 50%;
     width: 100px;
-    background-color: #54BE20;
+    background-color: #000;
     border: #ebebeb;
     border-radius: 2px;
     height: 30px;
@@ -515,7 +523,7 @@ text-overflow: ellipsis;
     -o-transition: opacity 1s;
     -ms-transition: opacity 1s;
     transition: opacity 1s;
-    opacity: 1;
+    opacity: 0.6;
 }
 .tipsHide {
     -webkit-transition: opacity 1s;
