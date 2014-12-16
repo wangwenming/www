@@ -44,8 +44,10 @@ define([
             'click .subscribed-content': 'subscribedContent'
         },
         subscribedContent: function() {
-            var url = $(event.target).closest('tr').data('url');
-            location.href = url;
+            var url = $(event.target).closest('td').data('url');
+            if (url) {
+                location.href = url;
+            }
         }
     });
 
